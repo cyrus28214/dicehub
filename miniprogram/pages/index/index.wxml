@@ -25,4 +25,18 @@
     </view>
   </view>
 </scroll-view> -->
-
+<view class="container">
+    <view class="section">
+        <view class="search-box">
+            <icon type="search" size="14"></icon>
+            <input type="text" placeholder="搜索" placeholder-class="search-placeholder"/>
+        </view>
+    </view>
+    <view class="section">
+        <swiper class="swiper" autoplay="true" indicator-dots="true">
+            <swiper-item class="swiper-item swiper-item-1"><view>1</view></swiper-item>
+            <swiper-item class="swiper-item swiper-item-2"><view>2</view></swiper-item>
+            <swiper-item class="swiper-item swiper-item-3"><view>3</view></swiper-item>
+        </swiper>
+    </view>
+</view>
