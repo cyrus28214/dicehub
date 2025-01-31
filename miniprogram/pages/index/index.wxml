@@ -39,4 +39,10 @@
             <swiper-item class="swiper-item swiper-item-3"><view>3</view></swiper-item>
         </swiper>
     </view>
+    <view class="section">
+        <game-list 
+          games="{{games}}" 
+          bind:gameselect="onGameSelect"
+        />
+    </view>
 </view>

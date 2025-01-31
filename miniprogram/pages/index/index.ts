@@ -2,6 +2,7 @@
 // 获取应用实例
 const app = getApp<IAppOption>()
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+import { games } from '../../data/games';
 
 Component({
   data: {
@@ -13,6 +14,7 @@ Component({
     hasUserInfo: false,
     canIUseGetUserProfile: wx.canIUse('getUserProfile'),
     canIUseNicknameComp: wx.canIUse('input.type.nickname'),
+    games: games
   },
   methods: {
     // 事件处理函数
@@ -49,6 +51,12 @@ Component({
           })
         }
       })
+    },
+    onGameSelect(e: any) {
+      const gameId = e.detail.gameId;
+      wx.navigateTo({
+        url: `/pages/gameDetail/gameDetail?gameId=${gameId}`
+      });
     },
   },
 })

@@ -1,4 +1,5 @@
 {
   "usingComponents": {
+    "game-list": "../../components/game-list/game-list"
   }
 }
