@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "game-list": "../../components/game-list/game-list"
+    "gameList": "../../components/gameList/gameList"
   }
 }

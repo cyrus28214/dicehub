@@ -40,7 +40,7 @@
         </swiper>
     </view>
     <view class="section">
-        <game-list 
+        <gameList 
           games="{{games}}" 
           bind:gameselect="onGameSelect"
         />
