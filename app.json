@@ -18,15 +18,16 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "assets/home.png",
+        "selectedIconPath": "assets/home-active.png"
       },
       {
         "pagePath": "pages/ranking/ranking",
-        "text": "排行榜"
+        "text": "排行榜",
+        "iconPath": "assets/ranking.png",
+        "selectedIconPath": "assets/ranking-active.png"
       }
     ]
-  },
-  "style": "v2",
-  "componentFramework": "glass-easel",
-  "lazyCodeLoading": "requiredComponents"
-}
+  }
+} 

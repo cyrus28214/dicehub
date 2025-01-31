@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="header">
+    <view class="title">热门桌游</view>
+  </view>
+
+  <view class="ranking-list">
+    <view class="ranking-item" wx:for="{{rankingList}}" wx:key="id" bindtap="onGameTap" data-game="{{item}}">
+      <view class="rank {{item.rank <= 3 ? 'top' + item.rank : ''}}">{{item.rank}}</view>
+      <image class="cover" src="{{item.cover}}" mode="aspectFill"></image>
+      <view class="info">
+        <view class="title">{{item.title}}</view>
+        <view class="desc">{{item.description}}</view>
+        <view class="meta">
+          <view class="rating">
+            <text class="score">{{item.rating}}</text>
+            <text class="max">/10.0</text>
+          </view>
+          <view class="count">{{item.playCount}}人玩过</view>
+        </view>
+        <view class="tags">
+          <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 
