@@ -27,22 +27,45 @@
 </scroll-view> -->
 <view class="container">
     <view class="section">
-        <view class="search-box">
+        <view class="search-box" bind:tap="onTapSearch">
             <icon type="search" size="20"></icon>
-            <input type="text" placeholder="搜索" placeholder-class="search-placeholder"/>
+            <input 
+              type="text" 
+              placeholder="搜索" 
+              placeholder-class="search-placeholder"
+              disabled
+            />
         </view>
     </view>
     <view class="section">
-        <swiper class="swiper" autoplay="true" indicator-dots="true">
-            <swiper-item class="swiper-item swiper-item-1"><view>1</view></swiper-item>
-            <swiper-item class="swiper-item swiper-item-2"><view>2</view></swiper-item>
-            <swiper-item class="swiper-item swiper-item-3"><view>3</view></swiper-item>
+        <swiper class="swiper" autoplay="true">
+            <swiper-item class="swiper-item" wx:for="{{hot}}" >
+                <image
+                    class="swiper-image"
+                    src="{{item.image}}"
+                    mode="scaleToFill"
+                    data-url="{{item.url}}"
+                    bind:tap="onTapSwiperItem"
+                />            
+            </swiper-item>
         </swiper>
+    </view>
+    <view class="section">
+        <view class="category">
+            <view class="category-item" 
+                  wx:for="{{categories}}" 
+                  bind:tap="onCategoryTap"
+                  data-url="{{item.url}}">
+                <view class="category-background" style="background-color: {{item.color}}">
+                    <image class="category-icon" src="{{item.icon}}" />
+                </view>
+                <view class="category-text">{{item.text}}</view>
+            </view>
+        </view>
     </view>
     <view class="section">
         <gameList 
           games="{{games}}" 
-          bind:gameselect="onGameSelect"
         />
     </view>
 </view>

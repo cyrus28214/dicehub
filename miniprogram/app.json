@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/gameDetail/gameDetail",
-    "pages/ranking/ranking"
+    "pages/ranking/ranking",
+    "pages/category/category",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,8 +27,5 @@
         "text": "排行榜"
       }
     ]
-  },
-  "style": "v2",
-  "componentFramework": "glass-easel",
-  "lazyCodeLoading": "requiredComponents"
+  }
 }

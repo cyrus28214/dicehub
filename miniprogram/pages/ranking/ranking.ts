@@ -8,5 +8,14 @@ Component({
       playCount: game.playCount,
       rank: index + 1
     }))
+  },
+
+  methods: {
+    onGameTap(e: WechatMiniprogram.TouchEvent) {
+      const game = e.currentTarget.dataset.game
+      wx.navigateTo({
+        url: `/pages/gameDetail/gameDetail?gameId=${game.id}`
+      })
+    }
   }
 }); 

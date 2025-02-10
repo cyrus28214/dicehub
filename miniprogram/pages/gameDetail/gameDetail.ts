@@ -6,7 +6,7 @@ Component({
   },
   methods: {
     onLoad(options: any) {
-        const gameId = parseInt(options?.gameId);
+        const gameId = parseInt(options.gameId);
         const game = games.find(g => g.id === gameId);
         
         if (game) {

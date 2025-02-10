@@ -1,0 +1,16 @@
+.container {
+  padding: 20rpx;
+}
+
+.header {
+  padding: 20rpx 0;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.content {
+  margin-top: 20rpx;
+} 
