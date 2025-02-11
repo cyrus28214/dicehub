@@ -1,0 +1,165 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-header {
+  padding: 20rpx;
+  background: #fff;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 10rpx 20rpx;
+  border-radius: 8rpx;
+}
+
+.search-input {
+  flex: 1;
+  margin-left: 20rpx;
+  font-size: 28rpx;
+}
+
+.search-content {
+  flex: 1;
+  padding: 20rpx;
+}
+
+.history-section {
+  margin-bottom: 40rpx;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.history-title {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.clear-history {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.history-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.history-item {
+  padding: 10rpx 30rpx;
+  background: #f5f5f5;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.tags-section {
+  margin: 20rpx 0;
+}
+
+.tags-scroll {
+  white-space: nowrap;
+  padding: 10rpx 20rpx;
+}
+
+.tag-item {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  margin-right: 16rpx;
+  background: #f5f5f5;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.tag-item.active {
+  background: #b58cca;
+  color: #fff;
+}
+
+.filter-section {
+  margin: 10rpx 0;
+  background: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.filter-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.selected-tags {
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  color: #b58cca;
+}
+
+.arrow {
+  margin-left: auto;
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 4rpx solid #999;
+  border-bottom: 4rpx solid #999;
+  transition: transform 0.3s;
+}
+
+.arrow.down {
+  transform: rotate(45deg);
+}
+
+.arrow.up {
+  transform: rotate(-135deg);
+}
+
+.tags-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+}
+
+.tags-panel.show {
+  max-height: 300rpx;
+  overflow: scroll;
+}
+
+.tags-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+  padding: 24rpx;
+}
+
+.tag-item {
+  text-align: center;
+  padding: 16rpx;
+  background: #f8f8f8;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.tag-item.active {
+  background: #b58cca;
+  color: #fff;
+} 

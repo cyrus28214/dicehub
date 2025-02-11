@@ -1,0 +1,27 @@
+<view class="container" wx:if="{{game}}">
+  <view class="header">
+    <image class="cover" src="{{game.cover}}" mode="aspectFill"></image>
+    <view class="info">
+      <view class="title">{{game.title}}</view>
+      <view class="rating">
+        <text class="score">{{game.rating}}</text>
+        <text class="max">/10.0</text>
+      </view>
+      <view class="tags">
+        <text class="tag" wx:for="{{game.tags}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">桌游简介</view>
+    <view class="description">{{game.description}}</view>
+  </view>
+
+  <view class="actions">
+    <button class="action-btn share" bindtap="onShareTap">
+      <text class="icon">🔗</text>
+      <text>分享</text>
+    </button>
+  </view>
+</view> 

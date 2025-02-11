@@ -1,0 +1,69 @@
+<wxs src="/utils/utils.wxs" module="utils" />
+<view class="container">
+  <view class="search-header">
+    <view class="search-box">
+      <icon type="search" size="20"></icon>
+      <input 
+        class="search-input"
+        type="text" 
+        placeholder="" 
+        placeholder-class="search-placeholder"
+        value="{{keyword}}"
+        bindinput="onInput"
+        bindconfirm="onSearch"
+        confirm-type="search"
+      />
+    </view>
+  </view>
+
+  <view class="search-content">
+    <block wx:if="{{showHistory && history.length > 0}}">
+      <view class="history-section">
+        <view class="history-header">
+          <text class="history-title">搜索历史</text>
+          <text class="clear-history" bindtap="clearHistory">清除</text>
+        </view>
+        <view class="history-list">
+          <view 
+            class="history-item" 
+            wx:for="{{history}}" 
+            wx:key="*this"
+            bindtap="onHistoryTap"
+            data-keyword="{{item}}"
+          >{{item}}</view>
+        </view>
+      </view>
+    </block>
+
+    <view class="filter-section">
+      <view class="filter-header" bindtap="toggleTagsPanel">
+        <text class="filter-title">筛选</text>
+        <view class="selected-tags" wx:if="{{selectedTags.length}}">
+          已选{{selectedTags.length}}个
+        </view>
+        <view class="arrow {{showTagsPanel ? 'up' : 'down'}}"></view>
+      </view>
+      
+      <view class="tags-panel {{showTagsPanel ? 'show' : ''}}">
+        <view class="tags-grid">
+          <view 
+            class="tag-item {{utils.includes(selectedTags, tag) ? 'active' : ''}}" 
+            wx:for="{{allTags}}" 
+            wx:key="*this"
+            wx:for-item="tag"
+            bindtap="onTagTap"
+            data-tag="{{tag}}"
+          >
+            {{tag}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <block>
+      <gameList 
+        games="{{games}}"
+      />
+    </block>
+  </view>
+</view> 
