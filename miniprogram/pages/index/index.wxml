@@ -53,13 +53,13 @@
     <view class="section">
         <view class="category">
             <view class="category-item" 
-                  wx:for="{{categories}}" 
+                  wx:for="{{recommendCategories}}" 
                   bind:tap="onCategoryTap"
-                  data-url="{{item.url}}">
-                <view class="category-background" style="background-color: {{item.color}}">
-                    <image class="category-icon" src="{{item.icon}}" />
+                  data-url="/pages/category/categoryDetail?id={{item.id}}">
+                <view class="category-background" >
+                    <image class="category-icon" src="{{item.image}}" />
                 </view>
-                <view class="category-text">{{item.text}}</view>
+                <view class="category-text">{{item.name}}</view>
             </view>
         </view>
     </view>

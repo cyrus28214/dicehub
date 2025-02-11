@@ -3,10 +3,10 @@
     <view class="title">{{title}}</view>
   </view>
   
-  <view class="content">
-    <gameList 
-      games="{{games}}"
-      bind:gameselect="onGameSelect"
-    />
-  </view>
+<view class="container">
+  <category-list
+    cates="{{cates}}"
+    bind:itemtap="onCategoryTap"
+  />
+</view>
 </view> 

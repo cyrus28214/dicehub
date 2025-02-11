@@ -1,6 +1,7 @@
 // index.ts
 // 获取应用实例
 import { games } from '../../data/games';
+const cates = require('../../data/cates')
 
 Component({
   data: {
@@ -11,13 +12,14 @@ Component({
       { image: 'https://picsum.photos/300/200', url: '/pages/gameDetail/gameDetail?gameId=1' },
       { image: 'https://picsum.photos/300/200', url: '/pages/gameDetail/gameDetail?gameId=1' },
     ],
-    categories: [ // TODO
+    categories: [ // TODO (wx upd : abandoned, use [recommendCategories] instead)
       { icon: "/assets/dice.svg", text: "TRPG", color: "#b58cca", url: "/pages/category/category?type=trpg" },
       { icon: "/assets/dice.svg", text: "TRPG", color: "#b58cca", url: "/pages/category/category?type=rpg" },
       { icon: "/assets/dice.svg", text: "TRPG", color: "#b58cca", url: "/pages/category/category?type=card" },
       { icon: "/assets/dice.svg", text: "TRPG", color: "#b58cca", url: "/pages/category/category?type=board" }
     ],
-    games: games
+    games: games,
+    recommendCategories: []
   },
   methods: {
     onTapSearch() {
@@ -49,5 +51,41 @@ Component({
         promise // 异步处理内容（如需要动态生成转发标题）
       };
     },
+    onLoad() {
+      // 随机抽取4个分类
+      this.setRandomCategories()
+    },
+    // 随机抽取分类的方法
+    setRandomCategories() {
+      const allCates = [...cates]  // 复制数组，避免影响原数据
+      const selected = []
+      
+      // 随机抽取4个分类
+      while (selected.length < 4 && allCates.length > 0) {
+        const randomIndex = Math.floor(Math.random() * allCates.length)
+        selected.push(allCates.splice(randomIndex, 1)[0])
+      }
+
+      // 转换为需要的格式
+      const recommendCategories = selected.map(cate => ({
+        id: cate.id,
+        name: cate.name,
+        image: cate.image,  // 使用分类自己的图标
+        desc: cate.description
+      }))
+
+      this.setData({
+        recommendCategories: recommendCategories
+      })
+
+      console.log(recommendCategories)
+    },
+    // 修改点击处理方法
+    onRecommendTap(e) {
+      const { id } = e.currentTarget.dataset
+      wx.navigateTo({
+        url: `/pages/categoryDetail/categoryDetail?id=${id}`
+      })
+    }
   },
 })
