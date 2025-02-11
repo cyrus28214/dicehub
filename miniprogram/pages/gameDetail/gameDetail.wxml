@@ -5,7 +5,7 @@
       <view class="title">{{game.title}}</view>
       <view class="rating">
         <text class="score">{{game.rating}}</text>
-        <text class="max">/5.0</text>
+        <text class="max">/10.0</text>
       </view>
       <view class="tags">
         <text class="tag" wx:for="{{game.tags}}" wx:key="*this">{{item}}</text>

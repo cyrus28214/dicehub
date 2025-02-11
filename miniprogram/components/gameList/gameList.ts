@@ -12,6 +12,6 @@ Component({
       wx.navigateTo({
         url: `/pages/gameDetail/gameDetail?gameId=${game.id}`
       });
-    }
+    },
   }
 }); 
