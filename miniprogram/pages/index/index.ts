@@ -1,7 +1,7 @@
 // index.ts
 // 获取应用实例
 import { games } from '../../data/games';
-import { cates } from '../../data/cates';
+import { cates, Category }  from '../../data/cates';
 
 Component({
   data: {
@@ -19,7 +19,7 @@ Component({
       { icon: "/assets/dice.svg", text: "TRPG", color: "#b58cca", url: "/pages/category/category?type=board" }
     ],
     games: games,
-    recommendCategories: []
+    recommendCategories: [] as Category[]
   },
   methods: {
     onTapSearch() {
@@ -81,7 +81,7 @@ Component({
       console.log(recommendCategories)
     },
     // 修改点击处理方法
-    onRecommendTap(e) {
+    onRecommendTap(e: any) {
       const { id } = e.currentTarget.dataset
       wx.navigateTo({
         url: `/pages/categoryDetail/categoryDetail?id=${id}`
