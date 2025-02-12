@@ -1,0 +1,11 @@
+<view class="category-list">
+  <block wx:for="{{cates}}" wx:key="id">
+    <view class="category-item" bindtap="onTapItem" data-item="{{item}}">
+      <image class="category-image" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="category-info">
+        <view class="category-name">{{item.name}}</view>
+        <view class="category-desc">{{item.description}}</view>
+      </view>
+    </view>
+  </block>
+</view>
