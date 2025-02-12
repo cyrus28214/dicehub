@@ -1,7 +1,7 @@
 // index.ts
 // 获取应用实例
 import { games } from '../../data/games';
-const cates = require('../../data/cates')
+import { cates } from '../../data/cates';
 
 Component({
   data: {

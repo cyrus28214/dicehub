@@ -1,4 +1,4 @@
-const cates = [
+export const cates = [
   {
     id: '1',
     name: '推理',
@@ -114,5 +114,3 @@ const cates = [
     image: '/images/categories/turnbased.png'
   }
 ]
-
-module.exports = cates 

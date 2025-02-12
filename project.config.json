@@ -34,5 +34,6 @@
     "ignore": [],
     "include": []
   },
-  "appid": "wx07edd9f6aee045e6"
+  "appid": "wx07edd9f6aee045e6",
+  "projectname": "wx-miniprogram"
 }

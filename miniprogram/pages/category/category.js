@@ -1,4 +1,4 @@
-const cates = require('../../data/cates')
+import cates from '../../data/cates';
 
 Page({
   data: {
