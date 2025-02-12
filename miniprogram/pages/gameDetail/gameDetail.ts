@@ -1,12 +1,15 @@
-import { Game, games } from '../../data/games';
+// import { Game, games } from '../../data/games';
+
+import { getGames } from "../../api/api";
 
 Component({
   data: {
-    game: null as Game | null
+    game: null as any
   },
   methods: {
-    onLoad(options: any) {
+    async onLoad(options: any) {
         const gameId = parseInt(options.gameId);
+        const games = await getGames();
         const game = games.find(g => g.id === gameId);
         
         if (game) {

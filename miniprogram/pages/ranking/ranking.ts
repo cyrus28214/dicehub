@@ -1,16 +1,26 @@
-import { games } from '../../data/games';
+import { getGames } from "../../api/api";
 
 Component({
   data: {
-    rankingList: games.sort((a, b) => b.playCount - a.playCount).map((game, index) => ({
-      ...game,
-      rating: game.rating.toFixed(1),
-      playCount: game.playCount,
-      rank: index + 1
-    }))
+    // rankingList: games.sort((a, b) => b.playCount - a.playCount).map((game, index) => ({
+    //   ...game,
+    //   rating: game.rating.toFixed(1),
+    //   playCount: game.playCount,
+    //   rank: index + 1
+    // }))
+    rankingList: null as any[] | null
   },
 
   methods: {
+    async onLoad() {
+      const games = (await getGames())
+        .sort((a, b) => b.likes_count - a.likes_count)
+        .map((game, index) => ({
+          ...game,
+          rank: index + 1
+        }));
+      this.setData({rankingList: games});
+    },
     onGameTap(e: WechatMiniprogram.TouchEvent) {
       const game = e.currentTarget.dataset.game
       wx.navigateTo({

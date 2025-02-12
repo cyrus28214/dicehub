@@ -1,7 +1,8 @@
 // index.ts
 // 获取应用实例
-import { games } from '../../data/games';
-import { cates, Category }  from '../../data/cates';
+
+import { getGames } from '../../api/api';
+import { cates }  from '../../data/cates';
 
 Component({
   data: {
@@ -18,8 +19,8 @@ Component({
       { icon: "/assets/dice.svg", text: "TRPG", color: "#b58cca", url: "/pages/category/category?type=card" },
       { icon: "/assets/dice.svg", text: "TRPG", color: "#b58cca", url: "/pages/category/category?type=board" }
     ],
-    games: games,
-    recommendCategories: [] as Category[]
+    games: [] as any[],
+    recommendCategories: [] as any[]
   },
   methods: {
     onTapSearch() {
@@ -51,9 +52,17 @@ Component({
         promise // 异步处理内容（如需要动态生成转发标题）
       };
     },
+    async getGames() {
+      const games = await getGames();
+      console.debug({games});
+      this.setData({
+        games: games as any[]
+      });
+    },
     onLoad() {
       // 随机抽取4个分类
       this.setRandomCategories()
+      this.getGames();
     },
     // 随机抽取分类的方法
     setRandomCategories() {

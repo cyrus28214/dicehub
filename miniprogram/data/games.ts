@@ -8,7 +8,7 @@ export interface Game {
   tags: string[];
 }
 
-export const games: Game[] = [
+export let games: Game[] = [
   {
     id: 1,
     title: "阿瓦隆",
