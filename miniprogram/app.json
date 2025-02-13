@@ -5,7 +5,10 @@
     "pages/ranking/ranking",
     "pages/category/category",
     "pages/search/search",
-    "pages/categoryDetail/categoryDetail"
+    "pages/categoryDetail/categoryDetail",
+    "pages/profile/profile",
+    "pages/userInfoUpdate/userInfoUpdate",
+    "pages/history/history"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,6 +39,12 @@
         "text": "分类",
         "iconPath": "assets/group.png",
         "selectedIconPath": "assets/group.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/user.png",
+        "selectedIconPath": "assets/user.png"
       }
     ]
   }

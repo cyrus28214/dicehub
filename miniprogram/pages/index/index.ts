@@ -2,7 +2,7 @@
 // 获取应用实例
 
 import { getGames } from '../../api/api';
-import { cates }  from '../../data/cates';
+import { cates } from '../../data/cates';
 
 Component({
   data: {
@@ -14,8 +14,8 @@ Component({
     categories: [ // TODO (wx upd : abandoned, use [recommendCategories] instead)
       { id: 3, name: "聚会必玩", image: "/assets/cocktail.svg" },
       { id: 16, name: "紧张刺激", image: "/assets/zap.svg" },
-      { id: 2, name: "激情嘴炮", image: "/assets/comment.svg"},
-      { id: 19, name: "直接开蒸", image: "/assets/coffee-alt.svg"},
+      { id: 2, name: "激情嘴炮", image: "/assets/comment.svg" },
+      { id: 19, name: "直接开蒸", image: "/assets/coffee-alt.svg" },
     ],
     games: [] as any[],
     recommendCategories: [] as any[]
@@ -53,7 +53,7 @@ Component({
     },
     async getGames() {
       const games = await getGames();
-      console.debug({games});
+      console.debug({ games });
       this.setData({
         games: games as any[]
       });
@@ -62,12 +62,15 @@ Component({
       // 随机抽取4个分类
       this.setRandomCategories()
       this.getGames();
+      // console.log("all: ", this.data.games);
+      const app = getApp();
+      console.log("global openid now = ", app.globalData.userOpenId);
     },
     // 随机抽取分类的方法
     setRandomCategories() {
       const allCates = [...cates]  // 复制数组，避免影响原数据
       const selected = []
-      
+
       // 随机抽取4个分类
       while (selected.length < 4 && allCates.length > 0) {
         const randomIndex = Math.floor(Math.random() * allCates.length)

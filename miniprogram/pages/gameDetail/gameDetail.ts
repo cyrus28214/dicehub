@@ -2,26 +2,62 @@
 
 import { getGames } from "../../api/api";
 
+const userComments = require('../../data/userComments.js'); // 引入用户评论数据
+const app = getApp();
+
 Component({
   data: {
-    game: null as any
+    game: null as any,
+
+    hasComment: false,
+    userComment: {},
+    userRating: 0
   },
   methods: {
     async onLoad(options: any) {
-        const gameId = parseInt(options.gameId);
-        const games = await getGames();
-        const game = games.find(g => g.id === gameId);
-        
-        if (game) {
+      const gameId = parseInt(options.gameId);
+      const games = await getGames();
+      const game = games.find(g => g.id === gameId);
+      
+      if (game) {
         this.setData({ game });
-        } else {
+        console.log(game);
+      } else {
         wx.showToast({
             title: '游戏不存在',
             icon: 'error'
         });
         wx.navigateBack();
-        }
+      }
+
+      this.checkUserComment();
     },
+
+    checkUserComment() {
+      const userOpenId = app.globalData.userOpenId;
+      const comment = userComments.find(comment => (comment.openid === userOpenId && comment.gameid == this.data.game.id));
+
+      console.log("check user comment: ", comment);
+  
+      if (comment) {
+        this.setData({
+          hasComment: true,
+          userComment: comment,
+          userRating: comment.rate // 假设评论对象中有 rate 字段
+        });
+      } else {
+        this.setData({
+          hasComment: false
+        });
+      }
+    },
+
+    navigateToEvaluate() {
+      wx.navigateTo({
+        url: '/pages/evaluate/evaluate' // 跳转到评论页面
+      });
+    },
+
     onShareTap() {
       wx.showShareMenu({
         withShareTicket: true,

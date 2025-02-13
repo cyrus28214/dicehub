@@ -28,7 +28,7 @@
 
 .rank {
   width: 80rpx;
-  font-size: 1.1rem;
+  font-size: 32rpx;
   color: #999;
   text-align: center;
   padding-top: 20rpx;
@@ -37,19 +37,16 @@
 .rank.top1 {
   color: #ff9500;
   font-weight: bold;
-  font-size: 1.25rem;
 }
 
 .rank.top2 {
   color: #8e8e93;
   font-weight: bold;
-  font-size: 1.25rem;
 }
 
 .rank.top3 {
   color: #cd853f;
   font-weight: bold;
-  font-size: 1.25rem;
 }
 
 .cover {
@@ -126,8 +123,3 @@
   background: #f5f5f5;
   margin: 0 -32rpx;
 } 
-
-.right {
-  display: flex;
-  align-items: center;
-}

@@ -24,4 +24,20 @@
       <text>分享</text>
     </button>
   </view>
+
+  <view class="comment-section">
+    <text class="comment-title">我的评论</text> <br/>
+    
+    <view wx:if="{{hasComment}}">
+      <star-series user-rating="{{userRating}}"></star-series><br/>
+      <text class="comment-content">{{userComment.content}}</text> <br/>
+      <text class="comment-date">{{userComment.date}}</text> 
+    </view>
+    
+    <view wx:else>
+      <star-series user-rating="0"></star-series><br/>
+      <text class="no-comment">您当前尚未评价这款游戏或尚未登录！</text>
+      <button class="evaluate-btn" bindtap="navigateToEvaluate">去评价/登录</button>
+    </view>
+  </view>
 </view> 

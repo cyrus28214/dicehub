@@ -68,6 +68,6 @@ export async function getTags(): Promise<any[]> {
       header: {
         'Authorization': `Bearer ${token}`
       }
-    }) 
+    })
   })
 }

@@ -53,7 +53,7 @@
     <view class="section">
         <view class="category">
             <view class="category-item" 
-                  wx:for="{{categories}}" 
+                  wx:for="{{recommendCategories}}" 
                   bind:tap="onRecommendTap"
                   data-url="/pages/category/categoryDetail?id={{item.id}}">
                 <view class="category-background" >
@@ -64,7 +64,6 @@
         </view>
     </view>
     <view class="section">
-        <view class="section-title">最近热门</view>
         <gameList 
           games="{{games}}" 
         />
