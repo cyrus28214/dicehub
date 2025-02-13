@@ -1,14 +1,12 @@
 <!--pages/categoryDetail.wxml-->
 <view class="container">
   <view class="header">
-    <image class="category-image" src="{{category.image}}" mode="aspectFill"></image>
-    <view class="category-info">
-      <view class="category-name">{{category.name}}</view>
+    <view class="category-info" wx:if="{{category}}">
+      <view class="category-name">{{category.name}}游戏</view>
       <view class="category-desc">{{category.description}}</view>
     </view>
   </view>
-  
   <view class="content">
-    <game-list games="{{games}}" bind:itemtap="onGameTap" />
+    <game-list games="{{games}}" />
   </view>
 </view>
