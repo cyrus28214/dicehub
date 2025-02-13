@@ -7,11 +7,9 @@ import { cates }  from '../../data/cates';
 Component({
   data: {
     hot: [ // TODO
-      { image: 'https://picsum.photos/300/200', url: '/pages/gameDetail/gameDetail?gameId=1' },
-      { image: 'https://picsum.photos/300/200', url: '/pages/gameDetail/gameDetail?gameId=1' },
-      { image: 'https://picsum.photos/300/200', url: '/pages/gameDetail/gameDetail?gameId=1' },
-      { image: 'https://picsum.photos/300/200', url: '/pages/gameDetail/gameDetail?gameId=1' },
-      { image: 'https://picsum.photos/300/200', url: '/pages/gameDetail/gameDetail?gameId=1' },
+      { image: 'https://pic1.imgdb.cn/item/67ae4818d0e0a243d4fefa60.png', url: '/pages/gameDetail/gameDetail?gameId=1' },
+      { image: 'https://pic1.imgdb.cn/item/67ae4f7ed0e0a243d4fefa70.png', url: '/pages/gameDetail/gameDetail?gameId=1' },
+      { image: 'https://pic1.imgdb.cn/item/67ae4ffbd0e0a243d4fefa72.png', url: '/pages/gameDetail/gameDetail?gameId=1' }
     ],
     categories: [ // TODO (wx upd : abandoned, use [recommendCategories] instead)
       { icon: "/assets/dice.svg", text: "TRPG", color: "#b58cca", url: "/pages/category/category?type=trpg" },

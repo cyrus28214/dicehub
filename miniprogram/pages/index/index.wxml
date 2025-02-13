@@ -64,6 +64,7 @@
         </view>
     </view>
     <view class="section">
+        <view class="section-title">最近热门</view>
         <gameList 
           games="{{games}}" 
         />

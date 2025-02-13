@@ -5,7 +5,7 @@
       <view class="game-title">{{item.name}}</view>
       <view class="game-desc">{{item.description}}</view>
       <view class="game-tags">
-        <text class="game-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="tag.id">{{tag.name}}</text>
+        <text class="game-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="id">{{tag.name}}</text>
       </view>
     </view>
   </view>
