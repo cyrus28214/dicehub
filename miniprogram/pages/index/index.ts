@@ -12,10 +12,10 @@ Component({
       { image: 'https://pic1.imgdb.cn/item/67ae4ffbd0e0a243d4fefa72.png', url: '/pages/gameDetail/gameDetail?gameId=1' }
     ],
     categories: [ // TODO (wx upd : abandoned, use [recommendCategories] instead)
-      { id: 1, name: "聚会必玩", image: "/assets/cocktail.svg" },
-      { id: 2, name: "紧张刺激", image: "/assets/zap.svg" },
-      { id: 3, name: "激情嘴炮", image: "/assets/comment.svg"},
-      { id: 4, name: "直接开蒸", image: "/assets/coffee-alt.svg"},
+      { id: 3, name: "聚会必玩", image: "/assets/cocktail.svg" },
+      { id: 16, name: "紧张刺激", image: "/assets/zap.svg" },
+      { id: 2, name: "激情嘴炮", image: "/assets/comment.svg"},
+      { id: 19, name: "直接开蒸", image: "/assets/coffee-alt.svg"},
     ],
     games: [] as any[],
     recommendCategories: [] as any[]
