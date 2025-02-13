@@ -54,7 +54,7 @@
         <view class="category">
             <view class="category-item" 
                   wx:for="{{recommendCategories}}" 
-                  bind:tap="onCategoryTap"
+                  bind:tap="onRecommendTap"
                   data-url="/pages/category/categoryDetail?id={{item.id}}">
                 <view class="category-background" >
                     <image class="category-icon" src="{{item.image}}" />
