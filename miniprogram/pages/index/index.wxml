@@ -53,7 +53,7 @@
     <view class="section">
         <view class="category">
             <view class="category-item" 
-                  wx:for="{{recommendCategories}}" 
+                  wx:for="{{categories}}" 
                   bind:tap="onRecommendTap"
                   data-url="/pages/category/categoryDetail?id={{item.id}}">
                 <view class="category-background" >
