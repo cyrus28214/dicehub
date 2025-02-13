@@ -9,7 +9,6 @@ export async function getToken() {
     wx.login({
       fail: reject,
       success: res => {
-        console.log("code: ", res.code);
         wx.request({
           url: `${apiUrl}/login`,
           method: 'POST',
@@ -19,7 +18,6 @@ export async function getToken() {
           fail: reject,
           success: res2 => {
             const data = res2.data as Record<string, any>;
-            console.log(data);
             token = data.token;
             resolve(token);
           }
@@ -56,5 +54,20 @@ export async function getGames(): Promise<any[]> {
         'Authorization': `Bearer ${token}`
       }
     })
+  })
+}
+
+export async function getTags(): Promise<any[]> {
+  const token = getToken();
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${apiUrl}/tags`,
+      method: 'GET',
+      success: async res => resolve(res.data as any[]),
+      fail: reject,
+      header: {
+        'Authorization': `Bearer ${token}`
+      }
+    }) 
   })
 }
