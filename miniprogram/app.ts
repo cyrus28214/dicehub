@@ -1,4 +1,4 @@
-import { getGames, getProfile, getToken, login } from "./api/api";
+import { getGames, getProfile, getToken } from "./api/api";
 
 // app.ts
 App<IAppOption>({
@@ -13,7 +13,7 @@ App<IAppOption>({
 
     // 登录
     console.log("login result:", await getToken());
-    // console.log(await getProfile());
+    console.log("profile: ", await getProfile());
     const games = await getGames();
     console.log("games: ", games);
     // app.globalData.games = await getGames();

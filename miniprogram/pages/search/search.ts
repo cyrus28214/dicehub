@@ -3,7 +3,7 @@ import { games } from '../../data/games'
 Component({
     data: {
         keyword: '',
-        games: games,  // 初始显示所有游戏
+        games: null as any[] | null,
         history: [] as string[],
         showHistory: true,
         allTags: [] as string[],
