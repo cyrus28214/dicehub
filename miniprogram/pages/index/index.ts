@@ -7,9 +7,9 @@ import { cates }  from '../../data/cates';
 Component({
   data: {
     hot: [ // TODO
-      { image: 'https://pic1.imgdb.cn/item/67ae4818d0e0a243d4fefa60.png', url: '/pages/gameDetail/gameDetail?gameId=1' },
-      { image: 'https://pic1.imgdb.cn/item/67ae4f7ed0e0a243d4fefa70.png', url: '/pages/gameDetail/gameDetail?gameId=1' },
-      { image: 'https://pic1.imgdb.cn/item/67ae4ffbd0e0a243d4fefa72.png', url: '/pages/gameDetail/gameDetail?gameId=1' }
+      { image: 'https://pic1.imgdb.cn/item/67ae4818d0e0a243d4fefa60.png', url: '/pages/category/categoryDetail?id=25' },
+      { image: 'https://pic1.imgdb.cn/item/67ae4f7ed0e0a243d4fefa70.png', url: '/pages/category/categoryDetail?id=21' },
+      { image: 'https://pic1.imgdb.cn/item/67ae4ffbd0e0a243d4fefa72.png', url: '/pages/category/categoryDetail?id=6' }
     ],
     categories: [ // TODO (wx upd : abandoned, use [recommendCategories] instead)
       { id: 3, name: "聚会必玩", image: "/assets/cocktail.svg" },
@@ -27,6 +27,7 @@ Component({
       })
     },
     onTapSwiperItem(e: WechatMiniprogram.TouchEvent) {
+      console.log(e.currentTarget.dataset.url);
       wx.navigateTo({
         url: e.currentTarget.dataset.url
       })
