@@ -1,26 +1,20 @@
 <!--pages/profile/profile.wxml-->
 <view class="profile-container">
   <!-- 未登录状态 -->
-  <view class="header-section" wx:if="{{!userInfo}}">
-    <image class="default-avatar" src="/images/avatar/default.png"></image>
-    <button class="login-btn" bindtap="handleLogin">点击登录</button>
-  </view>
-
-  <!-- 已登录状态 -->
-  <view class="header-section" wx:else>
-    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-    <text class="nickname">{{userInfo.nickName}}</text>
-    <button class="logout-btn" bindtap="handleLogout">退出登录</button>
+  <view class="header-section" wx:if="{{name}}">
+    <image class="avatar" src="{{avatar}}" mode="aspectFill"></image>
+    <text class="nickname">{{name}}</text>
   </view>
 
   <!-- 功能列表 -->
   <view class="function-list">
-    <button class="function-btn" bindtap="navigateToUserInfoUpdate">
-      导入头像和昵称
-    </button>
-  </view>  <view class="function-list">
-    <button class="function-btn" bindtap="navigateToHistory">
-      我的历史评价
-    </button>
+    <button open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">修改头像</button>
+    <view class="nickname-container">
+    <view class="nickname-wrapper">
+      <text class="nickname-label">修改昵称</text>
+      <input type="nickname" class="nickname-input" placeholder="{{name}}" value="{{nicknameInput}}" bind:change="onChange" />
+      <image wx:if="{{nicknameInput}}" class="nickname-icon" bind:tap="onConfirm" src="/assets/check.svg" />
+    </view>
+  </view>
   </view>
 </view>

@@ -1,5 +1,5 @@
-export const apiUrl = 'https://api.cyrus28214.top/api';
-// export const apiUrl = 'http://localhost:8080/api'
+// export const apiUrl = 'https://api.cyrus28214.top/api';
+export const apiUrl = 'http://localhost:8080/api'
 
 let token: string | null = null;
 
@@ -33,6 +33,24 @@ export async function getProfile() {
     wx.request({
       url: `${apiUrl}/profile`,
       method: 'GET',
+      success: res => resolve(res.data),
+      fail: reject,
+      header: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  })
+}
+
+export async function updateUserName(name: string) {
+  const token = await getToken();
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${apiUrl}/profile/name`,
+      method: 'POST',
+      data: {
+        name: name
+      },
       success: resolve,
       fail: reject,
       header: {
@@ -71,6 +89,22 @@ export async function getComments(game_id): Promise<any[]> {
     })
   })
 }
+
+export async function uploadAvatar(avatarUrl: string) {
+  const token = await getToken();
+  return new Promise((resolve, reject) => {
+    wx.uploadFile({
+      url: apiUrl + '/profile/avatar',
+      filePath: avatarUrl,
+      name: 'file',
+      success: res => resolve(res.data),
+      fail: reject,
+      header: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  });
+};
 
 export async function submitComment(game_id, openid, rating, comment, date): Promise<any[]> {
   const token = await getToken();
