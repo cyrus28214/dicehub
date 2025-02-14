@@ -8,7 +8,8 @@
     "pages/categoryDetail/categoryDetail",
     "pages/profile/profile",
     "pages/userInfoUpdate/userInfoUpdate",
-    "pages/history/history"
+    "pages/history/history",
+    "pages/evaluate/evaluate"
   ],
   "window": {
     "backgroundTextStyle": "light",

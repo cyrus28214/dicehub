@@ -2,8 +2,8 @@
 <view class="history-container">
   <text class="page-title">我评价过的游戏</text>
   
-  <view wx:if="{{games.length > 0}}">
-    <game-list games="{{games}}"></game-list>
+  <view wx:if="{{mygames.length > 0}}">
+    <game-list games="{{mygames}}"></game-list>
   </view>
   
   <view wx:else>

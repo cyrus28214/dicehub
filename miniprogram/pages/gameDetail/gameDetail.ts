@@ -1,8 +1,7 @@
 // import { Game, games } from '../../data/games';
 
-import { getGames } from "../../api/api";
+import { getGames, getComments } from "../../api/api";
 
-const userComments = require('../../data/userComments.js'); // 引入用户评论数据
 const app = getApp();
 
 Component({
@@ -11,6 +10,7 @@ Component({
 
     hasComment: false,
     userComment: {},
+    otherComments: [] as any[],
     userRating: 0
   },
   methods: {
@@ -31,10 +31,12 @@ Component({
       }
 
       this.checkUserComment();
+      this.showComments();
     },
 
-    checkUserComment() {
+    async checkUserComment() {
       const userOpenId = app.globalData.userOpenId;
+      const userComments = await getComments(this.data.game.id);
       const comment = userComments.find(comment => (comment.openid === userOpenId && comment.gameid == this.data.game.id));
 
       console.log("check user comment: ", comment);
@@ -50,6 +52,20 @@ Component({
           hasComment: false
         });
       }
+    },
+
+    async showComments() {
+      const userOpenId = app.globalData.userOpenId;
+      const userComments = await getComments(this.data.game.id);
+      const otherComments = userComments.filter(comment => comment.openid !== userOpenId); // 过滤掉自己的评论
+
+      // 假设有一个方法来设置评论数据
+      this.setData({
+        otherComments: otherComments, // 其他玩家的评论
+      });
+
+      // 显示格式化的评论
+      console.log("玩家评论: ", this.data.otherComments);
     },
 
     navigateToEvaluate() {
