@@ -9,7 +9,6 @@ export async function getToken() {
     wx.login({
       fail: reject,
       success: res => {
-        console.debug("code: ", res.code);
         wx.request({
           url: `${apiUrl}/login`,
           method: 'POST',
@@ -21,7 +20,6 @@ export async function getToken() {
             const data = res2.data as Record<string, any>;
             token = data.token;
             resolve(token);
-            // console.debug("code: ", res.code);
           }
         })
       },

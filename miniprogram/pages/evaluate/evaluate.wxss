@@ -33,19 +33,15 @@
 
 .rating-section {
   display: flex;
-  align-items: center;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.rating-button {
-  background-color: #007aff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin: 0 10px;
-  cursor: pointer;
+.star-icon {
+  width: 40px; /* 增大星星图标的宽度 */
+  height: 40px; /* 增大星星图标的高度 */
+  margin: 0 10px; /* 增大星星之间的间距 */
+  cursor: pointer; /* 鼠标悬停时显示为可点击 */
 }
 
 .comment-input {

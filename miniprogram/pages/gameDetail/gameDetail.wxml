@@ -1,178 +1,65 @@
-<!-- WXML 修改 -->
 <view class="container" wx:if="{{game}}">
-    <!-- 固定头部 -->
-    <view class="fixed-header">
-      <view class="header">
-        <image class="cover" src="{{game.cover}}" mode="aspectFill"></image>
-        <view class="info">
-          <view class="title">{{game.title}}</view>
-          <view class="meta">
-            <text class="players">👥 {{game.minPlayers}}-{{game.maxPlayers}}人</text>
-            <text class="duration">⏳ {{game.duration}}分钟</text>
-          </view>
-          <view class="rating">
-            <text class="score">{{game.rating}}</text>
-            <text class="max">/10.0</text>
-          </view>
-          <view class="tags">
-            <text class="tag" wx:for="{{game.tags}}" wx:key="id">{{item.name}}</text>
-          </view>
-        </view>
+  <view class="header">
+    <image class="cover" src="{{game.image}}" mode="aspectFill"></image>
+    <view class="info">
+      <view class="title">{{game.name}}</view>
+      <view class="rating">
+        <text class="score">{{game.rating}}</text>
+        <text class="max">/10.0</text>
       </view>
-
-      <view class="section">
-        <view class="section-title">桌游简介</view>
-        <view class="description">{{game.description}}</view>
-      </view>
-
-      <!-- 固定导航栏 -->
-      <view class="quick-nav">
-        <view class="nav-item" bindtap="jumpToProcess" data-section="process">
-          <image src="/images/icon_process.png" class="nav-icon"/>
-          <text>游戏流程</text>
-        </view>
-        <view class="nav-item" bindtap="jumpToRoles" data-section="roles">
-          <image src="/images/icon_role.png" class="nav-icon"/>
-          <text>身份速查</text>
-        </view>
-        <view class="nav-item" bindtap="jumpToErrata" data-section="errata">
-          <image src="/images/icon_errata.png" class="nav-icon"/>
-          <text>易漏规则</text>
-        </view>
-        <view class="nav-item" bindtap="jumpToComment" data-section="comment">
-          <image src="/images/icon_errata.png" class="nav-icon"/>
-          <text>桌游评论</text>
-        </view>
+      <view class="tags">
+        <text class="tag" wx:for="{{game.tags}}" wx:key="id">{{item.name}}</text>
       </view>
     </view>
+  </view>
 
-    <!-- 可滚动内容区 -->
-    <scroll-view 
-    class="content-scroll" 
-    scroll-y 
-    scroll-with-animation 
-    scroll-top="{{scrollTop}}"
-    style="padding-top: {{headerHeight}}px;">
-      <!-- 游戏流程 -->
-      <view id="process" class="section">
-        <view class="section-title">
-          游戏流程
-        </view>
-        
-        <view class="process-flow">
-          <block wx:for="{{game.processSteps}}" wx:key="index">
-            <!-- 步骤块 -->
-            <view class="step-card">
-              <view class="step-header">
-                <view class="step-index">{{index + 1}}</view>
-                <text class="step-title">{{item.title}}</text>
-              </view>
-              <view class="step-content">{{item.content}}</view>
-            </view>
-            <!-- 步骤间箭头（最后一步不显示） -->
-            <view wx:if="{{index < game.processSteps.length - 1}}" class="step-arrow">
-              <image src="/images/icon_arrow_down.png" class="arrow-icon" />
-            </view>
-          </block>
-        </view>
-      </view>
-      <!-- 身份速查 -->
-      <view id="roles" class="section">
-        <view class="section-title">
-           身份速查
-        </view>
-        
-        <view class="role-grid">
-          <block wx:for="{{game.roles}}" wx:key="id">
-            <view 
-              class="role-card {{item.team === '好人' ? 'good' : 'bad'}}"
-              style="height: {{cardHeight}}rpx;"
-            >
-              <view class="role-content">
-                <text class="role-name">{{item.name}}</text>
-                <text class="role-desc">{{item.description}}</text>
-              </view>
-            </view>
-          </block>
-        </view>
-      </view>
-      <!-- 易漏规则 -->
-      <view id="errata" class="section">
-      <view class="search-bar">
-        <input 
-          class="search-input"
-          placeholder="搜索易漏规则..."
-          placeholder-class="placeholder"
-          bindinput="onSearchInput"
-          value="{{searchKeyword}}"
-        />
-        <image 
-          src="/images/icon_search.png" 
-          class="search-icon" 
-          wx:if="{{!searchKeyword}}"
-        />
-      </view>
+  <view class="section">
+    <view class="section-title">桌游简介</view>
+    <view class="description">{{game.description}}</view>
+  </view>
 
-      <!-- QA滚动区 -->
-      <scroll-view class="qa-scroll" scroll-y>
-        <block wx:for="{{filteredErrata}}" wx:key="id">
-          <view class="qa-card {{item.status}}">
-            <view class="question">
-              <text class="q">Q{{index + 1}}:</text>
-              <text class="text">{{item.question}}</text>
-            </view>
-            <view class="answer">
-              <text class="a">A:</text>
-              <text class="text">{{item.answer}}</text>
-            </view>
-            <view class="meta">
-              <text class="source">来源: {{item.source || '玩家反馈'}}</text>
-              <text class="status">{{item.status === 'confirmed' ? '已确认' : '待核实'}}</text>
-            </view>
-          </view>
-        </block>
-        <view wx:if="{{!filteredErrata.length}}" class="empty-tip">
-          🕵️‍♀️ 未找到相关规则
-        </view>
-      </scroll-view>
+  <view class="actions">
+    <button class="action-btn share" bindtap="onShareTap">
+      <text class="icon">🔗</text>
+      <text>分享</text>
+    </button>
+  </view>
+
+  <view class="comment-section">
+    <text class="comment-title">我的评论</text> <br/>
+    
+    <view wx:if="{{hasComment}}">
+      <star-series user-rating="{{userRating}}"></star-series><br/>
+      <text class="comment-content">{{userComment.content}}</text> <br/>
+      <text class="comment-date">{{userComment.date}}</text> 
     </view>
+    
+    <view wx:else>
+      <star-series user-rating="0"></star-series><br/>
+      <text class="no-comment">您当前尚未评价这款游戏或尚未登录！</text>
+      <button class="evaluate-btn" bindtap="navigateToEvaluate">去评价/登录</button>
+    </view>
+  </view>
 
-    <view id="comment" class="section">
-        <text class="comment-title">我的评论</text> <br/>
-        
-        <view wx:if="{{hasComment}}">
-          <star-series user-rating="{{userRating}}"></star-series><br/>
-          <text class="comment-content">{{userComment.content}}</text> <br/>
-          <text class="comment-date">{{userComment.date}}</text> 
+  <!-- 添加玩家评论的部分 -->
+  <view class="comment-section">
+    <text class="comment-title">玩家评论</text> <br/>
+    
+    <block wx:for="{{otherComments}}" wx:key="index">
+      <view wx:if="{{item.content}}">
+        <!-- 显示用户头像和用户名 -->
+        <view class="user-info">
+          <image class="user-avatar" src="{{item.userAvatar}}" mode="aspectFill"></image> <!-- 假设头像在 userAvatar 字段 -->
+          <text class="username">{{item.username}}</text> <!-- 假设用户名在 username 字段 -->
         </view>
-        
-        <view wx:else>
-          <star-series user-rating="0"></star-series><br/>
-          <text class="no-comment">您当前尚未评价这款游戏或尚未登录！</text>
-          <button class="evaluate-btn" bindtap="navigateToEvaluate">去评价/登录</button>
-        </view>
+        <star-series user-rating="{{item.userRating}}"></star-series><br/> <!-- 假设每个评论都有 userRating -->
+        <text class="comment-content">{{item.content}}</text> <br/>
+        <text class="comment-date">{{item.date}}</text> <!-- 假设每个评论都有 date -->
       </view>
-
-      <!-- 添加玩家评论的部分 -->
-      <view class="comment-section">
-        <text class="comment-title">玩家评论</text> <br/>
-        
-        <block wx:for="{{otherComments}}" wx:key="index">
-          <view wx:if="{{item.content}}">
-            <!-- 显示用户头像和用户名 -->
-            <view class="user-info">
-              <image class="user-avatar" src="{{item.userAvatar}}" mode="aspectFill"></image> <!-- 假设头像在 userAvatar 字段 -->
-              <text class="username">{{item.username}}</text> <!-- 假设用户名在 username 字段 -->
-            </view>
-            <star-series user-rating="{{item.userRating}}"></star-series><br/> <!-- 假设每个评论都有 userRating -->
-            <text class="comment-content">{{item.content}}</text> <br/>
-            <text class="comment-date">{{item.date}}</text> <!-- 假设每个评论都有 date -->
-          </view>
-        </block>
-        
-        <view wx:if="{{otherComments.length == 0}}">
-          <text class="no-comment">当前没有其他玩家的评论。</text>
-        </view>
-      </view>
-  </scroll-view>
-</view>
+    </block>
+    
+    <view wx:if="{{otherComments.length == 0}}">
+      <text class="no-comment">当前没有其他玩家的评论。</text>
+    </view>
+  </view>
+</view> 
