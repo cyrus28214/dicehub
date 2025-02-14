@@ -5,5 +5,7 @@
       <view class="username">{{comment.user.name}}</view>
     </view>
     <starSeries userRating="{{comment.rating}}" />
+
 </view>
 <view class="content">{{comment.content}}</view>
+<view class="date">{{date}}</view>

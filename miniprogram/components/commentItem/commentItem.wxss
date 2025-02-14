@@ -25,8 +25,16 @@
 }
 
 .content {
+  color: #333;
   margin-left: 10rpx;
   margin-right: 10rpx;
-  font-size: 1.3rem;
+  font-size: 1rem;
+  line-height: 1.5;
   /* color: black; */
+}
+
+.date {
+  font-size: 0.75rem;
+  text-align: right;
+  color: #999;
 }

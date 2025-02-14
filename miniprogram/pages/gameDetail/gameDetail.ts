@@ -23,9 +23,10 @@ Component({
         });
         wx.navigateBack();
       }
-
+    },
+    async onShow() {
       const profile = (await getProfile()) as any;
-      const comments = await getComments(gameId);
+      const comments = await getComments(this.data.game.id);
       const userComment = comments.find(comment => (comment.user_id === profile.id));
       const otherComments = comments.filter(comment => (comment.user_id !== profile.id));
       this.setData({

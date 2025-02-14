@@ -18,12 +18,12 @@
     <view class="description">{{game.description}}</view>
   </view>
 
-  <view class="actions">
+  <!-- <view class="actions">
     <button class="action-btn share" bindtap="onShareTap">
       <text class="icon">🔗</text>
       <text>分享</text>
     </button>
-  </view>
+  </view> -->
 
   <view class="section">
     <view class="section-title">我的评论</view>
