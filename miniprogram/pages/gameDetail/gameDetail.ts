@@ -1,29 +1,22 @@
 import { ErrataItem, Game, games } from '../../data/games';
-
-<<<<<<< HEAD
-// import { getGames } from "../../api/api";
-
+import { getGames, getComments } from "../../api/api";
+const app = getApp();
 Component({
   data: {
     // game: null as any,
-    game: null as Game | null,
+    game: null as any,
     scrollTop: 0,
     headerHeight: 320, // 默认高度，单位px
     searchKeyword: '',
     newErrata: '',
     filteredErrata: [] as ErrataItem[],
     errataList: [] as ErrataItem[],
-    
+    hasComment: false,
+    userComment: {},
+    otherComments: [] as any[],
+    userRating: 0
   },
-  properties: {
-    errataList: {
-      type: Array,
-      value: [] as ErrataItem[],
-      observer(newVal: any) {
-        this.filterErrata()
-      }
-    }
-  },
+  
   methods: {
     async onLoad(options: any) {
         const gameId = parseInt(options.gameId);
@@ -43,32 +36,7 @@ Component({
             game,
             errataList: game.errataList || []
           });
-        } else {
-=======
-import { getGames, getComments } from "../../api/api";
-
-const app = getApp();
-
-Component({
-  data: {
-    game: null as any,
-
-    hasComment: false,
-    userComment: {},
-    otherComments: [] as any[],
-    userRating: 0
-  },
-  methods: {
-    async onLoad(options: any) {
-      const gameId = parseInt(options.gameId);
-      const games = await getGames();
-      const game = games.find(g => g.id === gameId);
-      
-      if (game) {
-        this.setData({ game });
-        console.log(game);
-      } else {
->>>>>>> 3f4ccf617842c90301e1f4aeab21b7a21e98c4d4
+        }else {
         wx.showToast({
             title: '游戏不存在',
             icon: 'error'
@@ -142,20 +110,6 @@ Component({
           path: '/pages/gameDetails/gameDetails', // 转发页面路径
         };
       }
-    },
-    scrollToSection(e: any) {
-      const section = e.currentTarget.dataset.section;
-      const query = wx.createSelectorQuery();
-      
-      query.select(`#${section}`).boundingClientRect()
-      query.selectViewport().scrollOffset()
-      
-      query.exec((res) => {
-        const offset = res[0].top + this.data.scrollTop - 80 // 80是导航栏高度
-        this.setData({
-          scrollTop: offset
-        })
-      })
     },
     // 跳转到流程部分
     jumpToProcess(e: WechatMiniprogram.CustomEvent) {

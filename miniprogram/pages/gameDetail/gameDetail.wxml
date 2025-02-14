@@ -39,6 +39,10 @@
           <image src="/images/icon_errata.png" class="nav-icon"/>
           <text>易漏规则</text>
         </view>
+        <view class="nav-item" bindtap="jumpToComment" data-section="comment">
+          <image src="/images/icon_errata.png" class="nav-icon"/>
+          <text>桌游评论</text>
+        </view>
       </view>
     </view>
 
@@ -109,7 +113,6 @@
         />
       </view>
 
-<<<<<<< HEAD
       <!-- QA滚动区 -->
       <scroll-view class="qa-scroll" scroll-y>
         <block wx:for="{{filteredErrata}}" wx:key="id">
@@ -133,52 +136,43 @@
         </view>
       </scroll-view>
     </view>
-    </scroll-view>
-</view>
-=======
-  <view class="actions">
-    <button class="action-btn share" bindtap="onShareTap">
-      <text class="icon">🔗</text>
-      <text>分享</text>
-    </button>
-  </view>
 
-  <view class="comment-section">
-    <text class="comment-title">我的评论</text> <br/>
-    
-    <view wx:if="{{hasComment}}">
-      <star-series user-rating="{{userRating}}"></star-series><br/>
-      <text class="comment-content">{{userComment.content}}</text> <br/>
-      <text class="comment-date">{{userComment.date}}</text> 
-    </view>
-    
-    <view wx:else>
-      <star-series user-rating="0"></star-series><br/>
-      <text class="no-comment">您当前尚未评价这款游戏或尚未登录！</text>
-      <button class="evaluate-btn" bindtap="navigateToEvaluate">去评价/登录</button>
-    </view>
-  </view>
-
-  <!-- 添加玩家评论的部分 -->
-  <view class="comment-section">
-    <text class="comment-title">玩家评论</text> <br/>
-    
-    <block wx:for="{{otherComments}}" wx:key="index">
-      <view wx:if="{{item.content}}">
-        <!-- 显示用户头像和用户名 -->
-        <view class="user-info">
-          <image class="user-avatar" src="{{item.userAvatar}}" mode="aspectFill"></image> <!-- 假设头像在 userAvatar 字段 -->
-          <text class="username">{{item.username}}</text> <!-- 假设用户名在 username 字段 -->
+    <view id="comment" class="section">
+        <text class="comment-title">我的评论</text> <br/>
+        
+        <view wx:if="{{hasComment}}">
+          <star-series user-rating="{{userRating}}"></star-series><br/>
+          <text class="comment-content">{{userComment.content}}</text> <br/>
+          <text class="comment-date">{{userComment.date}}</text> 
         </view>
-        <star-series user-rating="{{item.userRating}}"></star-series><br/> <!-- 假设每个评论都有 userRating -->
-        <text class="comment-content">{{item.content}}</text> <br/>
-        <text class="comment-date">{{item.date}}</text> <!-- 假设每个评论都有 date -->
+        
+        <view wx:else>
+          <star-series user-rating="0"></star-series><br/>
+          <text class="no-comment">您当前尚未评价这款游戏或尚未登录！</text>
+          <button class="evaluate-btn" bindtap="navigateToEvaluate">去评价/登录</button>
+        </view>
       </view>
-    </block>
-    
-    <view wx:if="{{otherComments.length == 0}}">
-      <text class="no-comment">当前没有其他玩家的评论。</text>
-    </view>
-  </view>
-</view> 
->>>>>>> 3f4ccf617842c90301e1f4aeab21b7a21e98c4d4
+
+      <!-- 添加玩家评论的部分 -->
+      <view class="comment-section">
+        <text class="comment-title">玩家评论</text> <br/>
+        
+        <block wx:for="{{otherComments}}" wx:key="index">
+          <view wx:if="{{item.content}}">
+            <!-- 显示用户头像和用户名 -->
+            <view class="user-info">
+              <image class="user-avatar" src="{{item.userAvatar}}" mode="aspectFill"></image> <!-- 假设头像在 userAvatar 字段 -->
+              <text class="username">{{item.username}}</text> <!-- 假设用户名在 username 字段 -->
+            </view>
+            <star-series user-rating="{{item.userRating}}"></star-series><br/> <!-- 假设每个评论都有 userRating -->
+            <text class="comment-content">{{item.content}}</text> <br/>
+            <text class="comment-date">{{item.date}}</text> <!-- 假设每个评论都有 date -->
+          </view>
+        </block>
+        
+        <view wx:if="{{otherComments.length == 0}}">
+          <text class="no-comment">当前没有其他玩家的评论。</text>
+        </view>
+      </view>
+  </scroll-view>
+</view>

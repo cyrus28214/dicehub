@@ -109,7 +109,6 @@
 
 .icon {
   margin-right: 8rpx;
-<<<<<<< HEAD
 } 
 
 .fixed-header {
@@ -400,7 +399,6 @@
 
 .status {
   color: #FF5722;
-=======
 }
 
 .comment-section {
@@ -442,5 +440,4 @@
   color: #999;
   line-height: 1.6;
   font-style: italic;
->>>>>>> 3f4ccf617842c90301e1f4aeab21b7a21e98c4d4
 }
