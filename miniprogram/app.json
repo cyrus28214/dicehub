@@ -36,12 +36,6 @@
         "selectedIconPath": "assets/trophy.png"
       },
       {
-        "pagePath": "pages/category/category",
-        "text": "分类",
-        "iconPath": "assets/group.png",
-        "selectedIconPath": "assets/group.png"
-      },
-      {
         "pagePath": "pages/profile/profile",
         "text": "我的",
         "iconPath": "assets/user.png",

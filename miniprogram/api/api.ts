@@ -1,5 +1,5 @@
-// export const apiUrl = 'https://api.cyrus28214.top/api';
-export const apiUrl = 'http://localhost:8080/api'
+export const apiUrl = 'https://api.cyrus28214.top/api';
+// export const apiUrl = 'http://localhost:8080/api'
 
 let token: string | null = null;
 
