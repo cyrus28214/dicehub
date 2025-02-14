@@ -4,6 +4,6 @@
 }
 
 .star-image {
-  width: 40rpx;
+  width: 45rpx;
   height: 40rpx;
 } 

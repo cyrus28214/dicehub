@@ -75,6 +75,42 @@ export async function getGames(): Promise<any[]> {
   })
 }
 
+export async function getGame(id: number) {
+  const token = await getToken();
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${apiUrl}/game?id=${id}`,
+      method: 'GET',
+      success: async res => resolve(res.data),
+      fail: reject,
+      header: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  })
+}
+
+export async function submitComment(game_id: number, content: string, rating: number) {
+  const token = await getToken();
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${apiUrl}/comment`,
+      method: 'POST',
+      success: async res => resolve(res.data),
+      data: {
+        game_id,
+        content,
+        rating
+      },
+      fail: reject,
+      header: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  })
+
+}
+
 export async function getComments(game_id): Promise<any[]> {
   const token = await getToken();
   return new Promise((resolve, reject) => {
@@ -105,27 +141,6 @@ export async function uploadAvatar(avatarUrl: string) {
     })
   });
 };
-
-export async function submitComment(game_id, openid, rating, comment, date): Promise<any[]> {
-  const token = await getToken();
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: `${apiUrl}/comments`,
-      method: 'POST',
-      data: {
-        game_id: game_id,
-        content: comment,
-        rating: rating,
-        created_at: date,
-        updated_at: date,
-        user: {
-          openid: openid,
-          
-        }
-      }
-    });
-  });
-}
 
 export async function getTags(): Promise<any[]> {
   const token = getToken();

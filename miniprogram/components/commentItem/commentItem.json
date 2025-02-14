@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "starSeries": "/components/starSeries/starSeries"
+  }
+}

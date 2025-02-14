@@ -1,0 +1,9 @@
+<!--components/commentItem.wxml-->
+<view class="header">
+    <view class="user-info">
+      <image class="user-avatar" src="{{comment.user.avatar}}" mode="aspectFill"></image>
+      <view class="username">{{comment.user.name}}</view>
+    </view>
+    <starSeries userRating="{{comment.rating}}" />
+</view>
+<view class="content">{{comment.content}}</view>

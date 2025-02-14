@@ -1,8 +1,5 @@
-import { ForceMode } from "XrFrame/components/physics/types";
-import {getGames, submitComment} from "../../api/api"
-const userInfos = require("../../data/userInfos.js");
+import {getGame, getGames, getProfile, submitComment} from "../../api/api";
 
-const app = getApp();
 Page({
   data: {
     userAvatar: '',
@@ -13,66 +10,25 @@ Page({
   },
 
   async onLoad(options) {
-    const games = await getGames();
-    console.log("games: ", games);
-    const game = games.find(game => game.id == options.game_id);
-    this.setData({game : game});
+    const gameId = parseInt(options.game_id!);
+    const game = await getGame(gameId);
+    console.log("game: ", game);
+    const profile = (await getProfile()) as any;
+
+    this.setData({
+      game : game,
+      userAvatar: profile.avatar,
+      username: profile.name
+    });
+  
   },
 
-  onShow() {
-    const userOpenId = app.globalData.userOpenId;
-
-    console.log("userOpenId: ", userOpenId);
-    if (!userOpenId) {
-      wx.showModal({
-        title: '提示',
-        content: '请先登录！',
-        success: (res) => {
-          if (res.confirm) {
-            wx.switchTab({
-              url: '/pages/profile/profile'
-            })
-          } else {
-            wx.navigateBack();
-          }
-        }
-      });
-      return;
-    }
-
-    const userInfo = userInfos.find(u => u.openid == userOpenId);
-
-    if (userInfo) {
-      this.setData({
-        userAvatar: userInfo.avatarUrl || '',
-        username: userInfo.nickName || ''
-      });
-
-      console.log(this.data.userAvatar);
-      console.log(this.data.username);
-    }
-
-    if (!this.data.userAvatar || !this.data.username) {
-      wx.showModal({
-        title: '提示',
-        content: '请设置头像和昵称',
-        success: (res) => {
-          if (res.confirm) {
-            wx.navigateTo({ url: '/pages/userInfoUpdate/userInfoUpdate' });
-          } else {
-            wx.navigateBack();
-          }
-        }
-      });
-    }
-  },
-
-  setRating(e) {
+  setRating(e: any) {
     const newRating = e.currentTarget.dataset.rating;
     this.setData({ rating: newRating });
   },
 
-  onCommentInput(e) {
+  onCommentInput(e: any) {
     this.setData({ comment: e.detail.value });
   },
 
@@ -91,12 +47,9 @@ Page({
     return formattedTime;
   },
 
-  submitReview() {
-    // 提交评价的逻辑
+  async submitReview() {
     console.log('提交评价:', this.data.rating, this.data.comment);
-    // 这里可以添加提交到服务器的代码
-
-    // submitComment(this.data.game.id, app.globalData.userOpenId, this.data.rating,  this.data.comment, getCurrentDate());
+    await submitComment(this.data.game.id, this.data.comment, this.data.rating);
     wx.navigateBack();
     wx.showToast({
       title: '评价成功',

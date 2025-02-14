@@ -35,7 +35,7 @@
 }
 
 .rank.top1 {
-  color: #ff9500;
+  color: #FF9D23;
   font-weight: bold;
 }
 
@@ -85,7 +85,7 @@
 .score {
   font-size: 32rpx;
   font-weight: bold;
-  color: #ff9500;
+  color: #FF9D23;
 }
 
 .max {

@@ -64,15 +64,15 @@
 }
 
 .section-title {
-  font-size: 32rpx;
+  font-size: 1rem;
   font-weight: bold;
   margin-bottom: 16rpx;
 }
 
 .description {
-  font-size: 28rpx;
+  font-size: 1rem;
   color: #666;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .actions {
@@ -102,41 +102,27 @@
   color: #333;
 }
 
-.action-btn.primary {
-  background: #07c160;
-  color: #fff;
-}
-
 .icon {
   margin-right: 8rpx;
 }
 
-.comment-section {
-  margin-top: 20rpx;
-  padding: 32rpx;
-  background: #fff;
-}
-
-.comment-title {
-  font-size: 32rpx;
-  font-weight: bold;
-  margin-bottom: 16rpx;
-}
-
 .no-comment {
   color: #999;
-  margin-bottom: 10rpx;
-  font-size: 28rpx;
-  line-height: 1.6;
+  margin-bottom: 30rpx;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .evaluate-btn {
-  background-color: #07c160;
-  color: #fff;
-  padding: 5rpx 10rpx;
-  border-radius: 5rpx;
-  margin-bottom: 10rpx;
-  font-size: 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333333;
+  color: white;
+  border-radius: 10rpx;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1rem;
 } 
 
 .comment-content {
@@ -150,4 +136,9 @@
   color: #999;
   line-height: 1.6;
   font-style: italic;
+}
+
+.icon {
+  width: 48rpx;
+  height: 48rpx;
 }

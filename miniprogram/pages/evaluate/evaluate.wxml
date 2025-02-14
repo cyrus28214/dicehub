@@ -12,7 +12,7 @@
     <block wx:for="{{[2, 4, 6, 8, 10]}}" wx:key="index">
       <image 
         class="star-icon" 
-        src="{{item <= rating ? '/images/rating_star/1.png' : '/images/rating_star/0.png'}}" 
+        src="{{item <= rating ? '/assets/star-fill.svg' : '/assets/star.svg'}}" 
         bindtap="setRating" 
         data-rating="{{item}}"
       ></image>
@@ -21,5 +21,5 @@
 
   <textarea class="comment-input" placeholder="请输入您的评论..." bindinput="onCommentInput"></textarea>
 
-  <button class="submit-button" bindtap="submitReview">提交评价</button>
+  <button class="submit-button" bindtap="submitReview" disabled="{{comment.length === 0}}">提交评价</button>
 </view> 

@@ -25,41 +25,30 @@
     </button>
   </view>
 
-  <view class="comment-section">
-    <text class="comment-title">我的评论</text> <br/>
+  <view class="section">
+    <view class="section-title">我的评论</view>
     
-    <view wx:if="{{hasComment}}">
-      <star-series user-rating="{{userRating}}"></star-series><br/>
-      <text class="comment-content">{{userComment.content}}</text> <br/>
-      <text class="comment-date">{{userComment.date}}</text> 
+    <view wx:if="{{userComment}}">
+      <commentItem comment="{{userComment}}"/>
     </view>
     
     <view wx:else>
-      <star-series user-rating="0"></star-series><br/>
-      <text class="no-comment">您当前尚未评价这款游戏或尚未登录！</text>
-      <button class="evaluate-btn" bindtap="navigateToEvaluate">去评价/登录</button>
+      <view class="no-comment">您当前尚未评价这款游戏！</view>
+      <button class="evaluate-btn" bindtap="navigateToEvaluate">
+        <view>去评价</view>
+        <image class="icon" src="/assets/arrow-right.svg" />
+      </button>
     </view>
   </view>
 
   <!-- 添加玩家评论的部分 -->
-  <view class="comment-section">
-    <text class="comment-title">玩家评论</text> <br/>
-    
-    <block wx:for="{{otherComments}}" wx:key="index">
-      <view wx:if="{{item.content}}">
-        <!-- 显示用户头像和用户名 -->
-        <view class="user-info">
-          <image class="user-avatar" src="{{item.userAvatar}}" mode="aspectFill"></image> <!-- 假设头像在 userAvatar 字段 -->
-          <text class="username">{{item.username}}</text> <!-- 假设用户名在 username 字段 -->
-        </view>
-        <star-series user-rating="{{item.userRating}}"></star-series><br/> <!-- 假设每个评论都有 userRating -->
-        <text class="comment-content">{{item.content}}</text> <br/>
-        <text class="comment-date">{{item.date}}</text> <!-- 假设每个评论都有 date -->
-      </view>
-    </block>
-    
+  <view class="section">
+    <view class="section-title">玩家评论</view>
+    <view wx:for="{{otherComments}}" wx:key="id">
+      <commentItem comment="{{item}}"/>
+    </view>
     <view wx:if="{{otherComments.length == 0}}">
-      <text class="no-comment">当前没有其他玩家的评论。</text>
+      <view class="no-comment">当前没有其他玩家的评论。</view>
     </view>
   </view>
 </view> 

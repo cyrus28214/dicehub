@@ -1,23 +1,18 @@
 // import { Game, games } from '../../data/games';
 
-import { getGames, getComments } from "../../api/api";
-
-const app = getApp();
+import { getComments, getGame, getProfile } from "../../api/api";
 
 Component({
   data: {
     game: null as any,
-    hasComment: false,
-    userComment: {},
-    otherComments: [] as any[],
-    userRating: 0
+    profile: null as any,
+    userComment: null as any,
+    otherComments: [] as any[]
   },
   methods: {
     async onLoad(options: any) {
       const gameId = parseInt(options.gameId);
-      const games = await getGames();
-      const game = games.find(g => g.id === gameId);
-      
+      const game = await getGame(gameId);
       if (game) {
         this.setData({ game });
         console.log(game);
@@ -29,50 +24,21 @@ Component({
         wx.navigateBack();
       }
 
-      this.checkUserComment();
-      this.showComments();
-    },
-
-    async checkUserComment() {
-      const userOpenId = app.globalData.userOpenId;
-      const userComments = await getComments(this.data.game.id);
-      const comment = userComments.find(comment => (comment.openid === userOpenId && comment.gameid == this.data.game.id));
-
-      console.log("check user comment: ", comment);
-  
-      if (comment) {
-        this.setData({
-          hasComment: true,
-          userComment: comment,
-          userRating: comment.rate // 假设评论对象中有 rate 字段
-        });
-      } else {
-        this.setData({
-          hasComment: false
-        });
-      }
-    },
-
-    async showComments() {
-      const userOpenId = app.globalData.userOpenId;
-      const userComments = await getComments(this.data.game.id);
-      const otherComments = userComments.filter(comment => comment.openid !== userOpenId); // 过滤掉自己的评论
-
-      // 假设有一个方法来设置评论数据
+      const profile = (await getProfile()) as any;
+      const comments = await getComments(gameId);
+      const userComment = comments.find(comment => (comment.user_id === profile.id));
+      const otherComments = comments.filter(comment => (comment.user_id !== profile.id));
       this.setData({
-        otherComments: otherComments, // 其他玩家的评论
-      });
-
-      // 显示格式化的评论
-      console.log("玩家评论: ", this.data.otherComments);
+        profile,
+        userComment,
+        otherComments
+      })
     },
-
     navigateToEvaluate() {
       wx.navigateTo({
         url: `/pages/evaluate/evaluate?game_id=${this.data.game.id}` // 跳转到评论页面
       });
     },
-
     onShareTap() {
       wx.showShareMenu({
         withShareTicket: true,
@@ -98,3 +64,4 @@ Component({
     },
   }
 }); 
+
