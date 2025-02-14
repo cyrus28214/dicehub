@@ -317,7 +317,6 @@
 .errata {
   position: relative;
   flex: 1; /* 让 .errata 伸展以占据剩余空间 */
-  padding-bottom: 0; /* 给底部输入留空间 */
 }
 
 .search-bar {
@@ -351,7 +350,7 @@
   flex: 1; /* 让滚动区域占据剩余空间 */
   overflow-y: auto; /* 确保内容能滚动 */
   padding: 20rpx;
-  height: 100vh;
+  height: auto;
   box-sizing: border-box; /* 确保padding包含在高度内 */
 }
 

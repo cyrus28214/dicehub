@@ -34,7 +34,8 @@ Component({
         if (game) {
           this.setData({ 
             game,
-            errataList: game.errataList || []
+            errataList: game.errataList || [],
+            filterErrata: game.errataList || []
           });
         }else {
         wx.showToast({
@@ -126,8 +127,12 @@ Component({
       this.handleSectionJump('errata');
     },
 
+    jumpToComment(e: WechatMiniprogram.CustomEvent) {
+      this.handleSectionJump('comment');
+    },
+
     // 通用滚动处理方法
-    handleSectionJump(sectionId: 'process' | 'roles' | 'errata') {
+    handleSectionJump(sectionId: 'process' | 'roles' | 'errata' | 'comment') {
       const query = wx.createSelectorQuery()
       
       // 获取目标元素位置
@@ -182,6 +187,5 @@ Component({
       });
     },    
 
-    
   }
 }); 
