@@ -1,4 +1,3 @@
-<wxs src="/utils/utils.wxs" module="utils" />
 <view class="container">
   <view class="search-header">
     <view class="search-box">
@@ -38,8 +37,8 @@
     <view class="filter-section">
       <view class="filter-header" bindtap="toggleTagsPanel">
         <text class="filter-title">筛选</text>
-        <view class="selected-tags" wx:if="{{selectedTags.length}}">
-          已选{{selectedTags.length}}个
+        <view class="selected-tags" wx:if="{{selectedCount}}">
+          已选{{selectedCount}}个
         </view>
         <view class="arrow {{showTagsPanel ? 'up' : 'down'}}"></view>
       </view>
@@ -47,14 +46,14 @@
       <view class="tags-panel {{showTagsPanel ? 'show' : ''}}">
         <view class="tags-grid">
           <view 
-            class="tag-item {{utils.includes(selectedTags, tag) ? 'active' : ''}}" 
+            class="tag-item {{tag.selected ? 'active' : ''}}" 
             wx:for="{{allTags}}" 
-            wx:key="*this"
+            wx:key="id"
             wx:for-item="tag"
             bindtap="onTagTap"
             data-tag="{{tag}}"
           >
-            {{tag}}
+            {{tag.name}}
           </view>
         </view>
       </view>

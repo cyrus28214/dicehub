@@ -39,7 +39,7 @@
     </view>
     <view class="section">
         <swiper class="swiper" autoplay="true">
-            <swiper-item class="swiper-item" wx:for="{{hot}}" >
+            <swiper-item class="swiper-item" wx:for="{{hot}}" wx:key="url" >
                 <image
                     class="swiper-image"
                     src="{{item.image}}"
@@ -53,9 +53,10 @@
     <view class="section">
         <view class="category">
             <view class="category-item" 
-                  wx:for="{{recommendCategories}}" 
-                  bind:tap="onRecommendTap"
-                  data-url="/pages/category/categoryDetail?id={{item.id}}">
+                  wx:for="{{categories}}" 
+                  wx:key="url"
+                  bind:tap="onCategoryTap"
+                  data-url="{{item.url}}">
                 <view class="category-background" >
                     <image class="category-icon" src="{{item.image}}" />
                 </view>

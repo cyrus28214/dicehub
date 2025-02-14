@@ -1,29 +1,32 @@
+import { AnimatorControllerStateModel } from 'XrFrame/kanata/lib/index';
+import { getGames, getTags } from '../../api/api'
 import { games } from '../../data/games'
 
 Component({
     data: {
         keyword: '',
-        games: games,  // 初始显示所有游戏
+        games: [] as any,
         history: [] as string[],
         showHistory: true,
-        allTags: [] as string[],
-        selectedTags: [] as string[],
+        allTags: [] as any,
+        selectedCount: 0,
         showTagsPanel: false
     },
 
     methods: {
-        onLoad() {
-            const history = wx.getStorageSync('searchHistory') || []
-            this.setData({ history })
+        async onLoad() {
+          const tags = await getTags();
+          this.setData({
+            allTags: tags
+          });
+          this.resetGames();
+        },
 
-            // 收集所有游戏的标签并去重
-            const tags = new Set<string>()
-            games.forEach(game => {
-                game.tags.forEach(tag => tags.add(tag))
-            })
-            this.setData({
-                allTags: Array.from(tags)
-            })
+        async resetGames() {
+          const games = await getGames();
+          this.setData({
+            games
+          });
         },
 
         onInput(e: WechatMiniprogram.Input) {
@@ -33,9 +36,9 @@ Component({
                 this.search(keyword)
             } else {
                 this.setData({
-                    games: games,  // 当搜索框为空时显示所有游戏
                     showHistory: true
                 })
+                this.resetGames();
             }
         },
 
@@ -47,30 +50,24 @@ Component({
             this.search(keyword)
         },
 
-        search(keyword: string) {
-            const searchResult = games.filter(game => {
-                // 标签筛选
-                if (this.data.selectedTags.length > 0) {
-                    const hasSelectedTags = this.data.selectedTags.every(tag =>
-                        game.tags.includes(tag)
-                    )
-                    if (!hasSelectedTags) return false
-                }
-
-                // 关键词筛选
-                if (keyword) {
-                    const lowerKeyword = keyword.toLowerCase()
-                    return game.title.toLowerCase().includes(lowerKeyword) ||
-                        game.description.toLowerCase().includes(lowerKeyword) ||
-                        game.tags.some(tag => tag.toLowerCase().includes(lowerKeyword))
-                }
-
-                return true
-            })
-
+        async search(keyword: string) {
+          const games = await getGames();
+          const selectedTags = this.data.allTags.filter((tag: any) => tag.selected);
+          const selectedTagIds = (selectedTags as any).map((tag : any) => tag.id);
+          const searchResult = games.filter((game: any) => {
+            const gameTagIds = game.tags.map((tag: any) => tag.id);
+            const satisfyTag = selectedTagIds.every((tagId: number) => gameTagIds.includes(tagId));
+            if (!satisfyTag) return false;
+            if (keyword) {
+              const lowerKeyword = keyword.toLowerCase()
+              return game.name.toLowerCase().includes(lowerKeyword) ||
+                game.description.toLowerCase().includes(lowerKeyword)
+            }
+            return true;
+          });
             this.setData({
-                games: searchResult,
-                showHistory: false
+              games: searchResult,
+              showHistory: false
             })
         },
 
@@ -98,29 +95,15 @@ Component({
             this.search(keyword)
         },
 
-        onGameSelect(e: WechatMiniprogram.CustomEvent) {
-            const gameId = e.detail
-            wx.navigateTo({
-                url: `/pages/gameDetail/gameDetail?gameId=${gameId}`
-            })
-        },
-
         onTagTap(e: WechatMiniprogram.TouchEvent) {
-            const tag = e.currentTarget.dataset.tag
-            const selectedTags = [...this.data.selectedTags]
-            const index = selectedTags.indexOf(tag)
-
-            if (index > -1) {
-                selectedTags.splice(index, 1)
-            } else {
-                selectedTags.push(tag)
-            }
-
-            console.log({ selectedTags });
-
+            const tappedTag = e.currentTarget.dataset.tag;
+            const allTags = this.data.allTags
+              .map((tag: any) => tag.id == tappedTag.id ? {...tag, selected: !tag.selected} : tag);
+            const selectedCount = allTags.filter((tag: any) => tag.selected).length;
             this.setData({
-                selectedTags,
-                showHistory: false  // 确保选择标签时不显示历史记录
+                allTags,
+                selectedCount,
+                showHistory: false
             })
             this.search(this.data.keyword)
         },
@@ -129,10 +112,6 @@ Component({
             this.setData({
                 showTagsPanel: !this.data.showTagsPanel
             })
-        },
-
-        includes<T>(arr: T[], value: T) {
-          return arr.includes(value);
         }
     }
 }) 

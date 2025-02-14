@@ -1,0 +1,20 @@
+<view class="evaluate-container">
+  <view class="header">
+    <text class="title">评价</text>
+  </view>
+
+  <view class="user-info">
+    <image class="user-avatar" src="{{userAvatar}}" mode="aspectFill"></image>
+    <text class="username">{{username}}</text>
+  </view>
+
+  <view class="rating-section">
+    <button class="rating-button" bindtap="decreaseRating">-</button>
+    <star-series user-rating="{{rating}}"></star-series>
+    <button class="rating-button" bindtap="increaseRating">+</button>
+  </view>
+
+  <textarea class="comment-input" placeholder="请输入您的评论..." bindinput="onCommentInput"></textarea>
+
+  <button class="submit-button" bindtap="submitReview">提交评价</button>
+</view> 

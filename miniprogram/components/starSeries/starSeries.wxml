@@ -1,0 +1,3 @@
+<view class="star-container">
+  <image wx:for="{{stars}}" src="{{item}}" class="star-image" />
+</view> 

@@ -23,7 +23,7 @@
   },
   "include": [
     "./**/*.ts"
-  ],
+, "miniprogram/pages/profile/profile.ts"  ],
   "exclude": [
     "node_modules"
   ]

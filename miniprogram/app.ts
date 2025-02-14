@@ -1,9 +1,10 @@
-import { getGames, getProfile, getToken, login } from "./api/api";
+// import { getGames, getProfile, getToken, login } from "./api/api";
 
 // app.ts
 App<IAppOption>({
   globalData: {
-    games: null
+    games: null,
+    userOpenId: null
   },
   async onLaunch() {
     // 展示本地存储能力
@@ -12,10 +13,10 @@ App<IAppOption>({
     // wx.setStorageSync('logs', logs)
 
     // 登录
-    console.log("login result:", await getToken());
+    // console.log("login result:", await getToken());
     // console.log(await getProfile());
-    const games = await getGames();
-    console.log("games: ", games);
+    // const games = await getGames();
+    // console.log("games: ", games);
     // app.globalData.games = await getGames();
     // console.log(app.globalData.games);
   },

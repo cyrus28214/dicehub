@@ -109,6 +109,7 @@
 
 .icon {
   margin-right: 8rpx;
+<<<<<<< HEAD
 } 
 
 .fixed-header {
@@ -399,4 +400,47 @@
 
 .status {
   color: #FF5722;
+=======
+}
+
+.comment-section {
+  margin-top: 20rpx;
+  padding: 32rpx;
+  background: #fff;
+}
+
+.comment-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.no-comment {
+  color: #999;
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+.evaluate-btn {
+  background-color: #07c160;
+  color: #fff;
+  padding: 5rpx 10rpx;
+  border-radius: 5rpx;
+  margin-bottom: 10rpx;
+  font-size: 24rpx;
+} 
+
+.comment-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.comment-date {
+  font-size: 28rpx; 
+  color: #999;
+  line-height: 1.6;
+  font-style: italic;
+>>>>>>> 3f4ccf617842c90301e1f4aeab21b7a21e98c4d4
 }
