@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "star-series": "/components/starSeries/starSeries"
+    "star-series": "/components/starSeries/starSeries",
+    "commentItem": "/components/commentItem/commentItem"
   }
 } 

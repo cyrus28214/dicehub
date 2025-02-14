@@ -1,0 +1,40 @@
+/* components/commentItem.wxss */
+.header {
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.username {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.content {
+  color: #333;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  font-size: 1rem;
+  line-height: 1.5;
+  /* color: black; */
+}
+
+.date {
+  font-size: 0.75rem;
+  text-align: right;
+  color: #999;
+}

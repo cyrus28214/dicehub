@@ -9,7 +9,6 @@ export async function getToken() {
     wx.login({
       fail: reject,
       success: res => {
-        console.debug("code: ", res.code);
         wx.request({
           url: `${apiUrl}/login`,
           method: 'POST',
@@ -21,7 +20,6 @@ export async function getToken() {
             const data = res2.data as Record<string, any>;
             token = data.token;
             resolve(token);
-            // console.debug("code: ", res.code);
           }
         })
       },
@@ -35,6 +33,24 @@ export async function getProfile() {
     wx.request({
       url: `${apiUrl}/profile`,
       method: 'GET',
+      success: res => resolve(res.data),
+      fail: reject,
+      header: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  })
+}
+
+export async function updateUserName(name: string) {
+  const token = await getToken();
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${apiUrl}/profile/name`,
+      method: 'POST',
+      data: {
+        name: name
+      },
       success: resolve,
       fail: reject,
       header: {
@@ -59,6 +75,42 @@ export async function getGames(): Promise<any[]> {
   })
 }
 
+export async function getGame(id: number) {
+  const token = await getToken();
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${apiUrl}/game?id=${id}`,
+      method: 'GET',
+      success: async res => resolve(res.data),
+      fail: reject,
+      header: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  })
+}
+
+export async function submitComment(game_id: number, content: string, rating: number) {
+  const token = await getToken();
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${apiUrl}/comment`,
+      method: 'POST',
+      success: async res => resolve(res.data),
+      data: {
+        game_id,
+        content,
+        rating
+      },
+      fail: reject,
+      header: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+  })
+
+}
+
 export async function getComments(game_id): Promise<any[]> {
   const token = await getToken();
   return new Promise((resolve, reject) => {
@@ -74,26 +126,21 @@ export async function getComments(game_id): Promise<any[]> {
   })
 }
 
-export async function submitComment(game_id, openid, rating, comment, date): Promise<any[]> {
+export async function uploadAvatar(avatarUrl: string) {
   const token = await getToken();
   return new Promise((resolve, reject) => {
-    wx.request({
-      url: `${apiUrl}/comments`,
-      method: 'POST',
-      data: {
-        game_id: game_id,
-        content: comment,
-        rating: rating,
-        created_at: date,
-        updated_at: date,
-        user: {
-          openid: openid,
-          
-        }
+    wx.uploadFile({
+      url: apiUrl + '/profile/avatar',
+      filePath: avatarUrl,
+      name: 'file',
+      success: res => resolve(res.data),
+      fail: reject,
+      header: {
+        'Authorization': `Bearer ${token}`
       }
-    });
+    })
   });
-}
+};
 
 export async function getTags(): Promise<any[]> {
   const token = getToken();

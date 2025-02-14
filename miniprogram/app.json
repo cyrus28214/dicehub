@@ -18,7 +18,7 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color": "#333333",
+    "color": "#999999",
     "selectedColor": "#333333",
     "backgroundColor": "#ffffff",
     "borderStyle": "black",
@@ -26,25 +26,19 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "assets/home.png",
+        "iconPath": "assets/home2.png",
         "selectedIconPath": "assets/home.png"
       },
       {
         "pagePath": "pages/ranking/ranking",
         "text": "排行榜",
-        "iconPath": "assets/trophy.png",
+        "iconPath": "assets/trophy2.png",
         "selectedIconPath": "assets/trophy.png"
-      },
-      {
-        "pagePath": "pages/category/category",
-        "text": "分类",
-        "iconPath": "assets/group.png",
-        "selectedIconPath": "assets/group.png"
       },
       {
         "pagePath": "pages/profile/profile",
         "text": "我的",
-        "iconPath": "assets/user.png",
+        "iconPath": "assets/user2.png",
         "selectedIconPath": "assets/user.png"
       }
     ]

@@ -1,6 +1,6 @@
 <view class="evaluate-container">
   <view class="header">
-    <text class="title">评价</text>
+    <text class="title">评价一下 {{game.name}} !</text>
   </view>
 
   <view class="user-info">
@@ -9,12 +9,17 @@
   </view>
 
   <view class="rating-section">
-    <button class="rating-button" bindtap="decreaseRating">-</button>
-    <star-series user-rating="{{rating}}"></star-series>
-    <button class="rating-button" bindtap="increaseRating">+</button>
+    <block wx:for="{{[2, 4, 6, 8, 10]}}" wx:key="index">
+      <image 
+        class="star-icon" 
+        src="{{item <= rating ? '/assets/star-fill.svg' : '/assets/star.svg'}}" 
+        bindtap="setRating" 
+        data-rating="{{item}}"
+      ></image>
+    </block>
   </view>
 
   <textarea class="comment-input" placeholder="请输入您的评论..." bindinput="onCommentInput"></textarea>
 
-  <button class="submit-button" bindtap="submitReview">提交评价</button>
+  <button class="submit-button" bindtap="submitReview" disabled="{{comment.length === 0}}">提交评价</button>
 </view> 

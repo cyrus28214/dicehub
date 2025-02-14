@@ -1,4 +1,6 @@
 .evaluate-container {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   background-color: #f9f9f9;
 }
@@ -33,38 +35,33 @@
 
 .rating-section {
   display: flex;
-  align-items: center;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.rating-button {
-  background-color: #007aff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin: 0 10px;
-  cursor: pointer;
+.star-icon {
+  width: 45px; /* 增大星星图标的宽度 */
+  height: 40px; /* 增大星星图标的高度 */
+  margin: 0 10px; /* 增大星星之间的间距 */
+  cursor: pointer; /* 鼠标悬停时显示为可点击 */
 }
 
 .comment-input {
   width: 100%;
+  box-sizing: border-box;
   height: 100px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #999;
+  border-radius: 10rpx;
   padding: 10px;
   margin-bottom: 20px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .submit-button {
-  background-color: #28a745;
+  background-color: #333333;
   color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 10rpx;
   width: 100%;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1.1rem;
 } 

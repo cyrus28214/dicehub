@@ -1,6 +1,4 @@
-import { AnimatorControllerStateModel } from 'XrFrame/kanata/lib/index';
 import { getGames, getTags } from '../../api/api'
-import { games } from '../../data/games'
 
 Component({
     data: {
