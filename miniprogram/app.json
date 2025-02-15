@@ -1,4 +1,4 @@
-{
+{"lazyCodeLoading": "requiredComponents",
   "pages": [
     "pages/index/index",
     "pages/gameDetail/gameDetail",
