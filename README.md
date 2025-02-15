@@ -6,6 +6,8 @@
 
 DiceHub是一个微信小程序，专注于桌游评分、规则速查和社区交流。
 
+backend: [dicehub-backend](https://github.com/cyrus28214/dicehub-backend)
+
 ## 项目特点
 
 - 简洁的UI设计，扁平化风格
