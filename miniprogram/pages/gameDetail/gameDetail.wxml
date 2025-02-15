@@ -3,12 +3,12 @@
   <!-- 固定头部 -->
   <view class="fixed-header">
     <view class="header">
-      <image class="cover" src="{{game.cover}}" mode="aspectFill"></image>
+      <image class="cover" src="{{game.image}}" mode="aspectFill"></image>
       <view class="info">
-        <view class="title">{{game.title}}</view>
+        <view class="title">{{game.name}}</view>
         <view class="meta">
-          <text class="players">👥 {{game.minPlayers}}-{{game.maxPlayers}}人</text>
-          <text class="duration">⏳ {{game.duration}}分钟</text>
+          <text class="players">👥 {{minPlayers}}-{{maxPlayers}}人</text>
+          <text class="duration">⏳ {{duration}}分钟</text>
         </view>
         <view class="rating">
           <text class="score">{{game.rating}}</text>

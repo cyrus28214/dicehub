@@ -12,6 +12,9 @@ Component({
     errataList: [] as ErrataItem[],
     userComment: null,
     otherComments: null as any,
+    minPlayers: null as any,
+    maxPlayers: null as any,
+    duration: null as any
   },
   
   methods: {
@@ -21,8 +24,10 @@ Component({
         const comments = await getComments(gameId);
         const userComment = comments.find(comment => comment.user.id === profile.id);
         const otherComments = comments.filter(comment => comment.user.id !== profile.id);
-        const game = games.find(g => g.id === gameId); // TODO
-        const query = wx.createSelectorQuery()
+        const game = (await getGame(gameId)) as any;
+        console.log({game});
+        const extraInfo = game.extra_info && JSON.parse(game.extra_info);
+        const query = wx.createSelectorQuery();
         query.select('.fixed-header').boundingClientRect()
         query.exec(res => {
           if (res[0]) {
@@ -31,21 +36,23 @@ Component({
             })
           }
         })
-        if (game) {
-          this.setData({ 
-            game,
-            userComment,
-            otherComments,
-            errataList: game.errataList || [],
-            filterErrata: game.errataList || []
-          });
-        }else {
-        wx.showToast({
+        if (!game) {
+          wx.showToast({
             title: '游戏不存在',
             icon: 'error'
+          });
+          wx.navigateBack();
+        }
+        this.setData({ 
+          game,
+          userComment,
+          otherComments,
+          errataList: extraInfo?.errataList || [],
+          filterErrata: extraInfo?.errataList || [],
+          minPlayers: extraInfo?.minPlayers || null,
+          maxPlayers: extraInfo?.maxPlayers || null,
+          duration: extraInfo?.duration || null,
         });
-        wx.navigateBack();
-      }
     },
     navigateToEvaluate() {
       wx.navigateTo({

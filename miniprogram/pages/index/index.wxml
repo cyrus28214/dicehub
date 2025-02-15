@@ -57,9 +57,7 @@
                   wx:key="url"
                   bind:tap="onCategoryTap"
                   data-url="{{item.url}}">
-                <view class="category-background" >
-                    <image class="category-icon" src="{{item.image}}" />
-                </view>
+                <image class="category-icon" src="{{item.image}}" />
                 <view class="category-text">{{item.name}}</view>
             </view>
         </view>

@@ -8,15 +8,15 @@ const categoryUrl = '/pages/categoryDetail/categoryDetail?id=';
 Component({
   data: {
     hot: [ // TODO
-      { image: 'https://pic1.imgdb.cn/item/67ae4818d0e0a243d4fefa60.png', url: categoryUrl + '25' },
-      { image: 'https://pic1.imgdb.cn/item/67ae4f7ed0e0a243d4fefa70.png', url: categoryUrl + '21' },
-      { image: 'https://pic1.imgdb.cn/item/67ae4ffbd0e0a243d4fefa72.png', url: categoryUrl + '6' }
+      { image: 'https://pic1.imgdb.cn/item/67ae4818d0e0a243d4fefa60.png', url: categoryUrl + '7' },
+      { image: 'https://pic1.imgdb.cn/item/67ae4f7ed0e0a243d4fefa70.png', url: categoryUrl + '29' },
+      { image: 'https://pic1.imgdb.cn/item/67ae4ffbd0e0a243d4fefa72.png', url: categoryUrl + '8' }
     ],
     categories: [ // TODO (wx upd : abandoned, use [recommendCategories] instead)
       { name: "聚会必玩", image: "/assets/cocktail.svg", url: categoryUrl + '3' },
-      { name: "紧张刺激", image: "/assets/zap.svg", url: categoryUrl + '16' },
+      { name: "紧张刺激", image: "/assets/zap.svg", url: categoryUrl + '22' },
       { name: "激情嘴炮", image: "/assets/comment.svg", url: categoryUrl + '2' },
-      { name: "直接开蒸", image: "/assets/coffee-alt.svg", url: categoryUrl + '19' },
+      { name: "直接开蒸", image: "/assets/coffee-alt.svg", url: categoryUrl + '26' },
     ],
     games: [] as any[],
     recommendCategories: [] as any[]
@@ -61,8 +61,6 @@ Component({
     },
     onLoad() {
       this.getGames();
-      const app = getApp();
-      console.log("global openid now = ", app.globalData.userOpenId);
     }
   },
 })
