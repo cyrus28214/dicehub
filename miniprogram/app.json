@@ -3,12 +3,9 @@
     "pages/index/index",
     "pages/gameDetail/gameDetail",
     "pages/ranking/ranking",
-    "pages/category/category",
     "pages/search/search",
     "pages/categoryDetail/categoryDetail",
     "pages/profile/profile",
-    "pages/userInfoUpdate/userInfoUpdate",
-    "pages/history/history",
     "pages/evaluate/evaluate"
   ],
   "window": {
