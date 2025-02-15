@@ -7,8 +7,8 @@
       <view class="info">
         <view class="title">{{game.name}}</view>
         <view class="meta">
-          <text class="players">👥 {{minPlayers}}-{{maxPlayers}}人</text>
-          <text class="duration">⏳ {{duration}}分钟</text>
+          <text class="players">👥 {{extraInfo.minPlayers}}-{{extraInfo.maxPlayers}}人</text>
+          <text class="duration">⏳ {{extraInfo.duration}}分钟</text>
         </view>
         <view class="rating">
           <text class="score">{{game.rating}}</text>
@@ -56,7 +56,7 @@
       </view>
 
       <view class="process-flow">
-        <block wx:for="{{game.processSteps}}" wx:key="index">
+        <block wx:for="{{extraInfo.processSteps}}" wx:key="index">
           <!-- 步骤块 -->
           <view class="step-card">
             <view class="step-header">
@@ -66,8 +66,8 @@
             <view class="step-content">{{item.content}}</view>
           </view>
           <!-- 步骤间箭头（最后一步不显示） -->
-          <view wx:if="{{index < game.processSteps.length - 1}}" class="step-arrow">
-            <image src="/images/icon_arrow_down.png" class="arrow-icon" />
+          <view wx:if="{{index < extraInfo.processSteps.length - 1}}" class="step-arrow">
+            <image src="/assets/arrow-down.svg" class="arrow-icon" />
           </view>
         </block>
       </view>
@@ -79,7 +79,7 @@
       </view>
 
       <view class="role-grid">
-        <block wx:for="{{game.roles}}" wx:key="id">
+        <block wx:for="{{extraInfo.roles}}" wx:key="id">
           <view class="role-card {{item.team === '好人' ? 'good' : 'bad'}}" style="height: {{cardHeight}}rpx;">
             <view class="role-content">
               <text class="role-name">{{item.name}}</text>

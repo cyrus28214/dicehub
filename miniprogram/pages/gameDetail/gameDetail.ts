@@ -8,23 +8,22 @@ Component({
     headerHeight: 320, // 默认高度，单位px
     searchKeyword: '',
     newErrata: '',
+    extraInfo: null as any,
     filteredErrata: [] as ErrataItem[],
-    errataList: [] as ErrataItem[],
     userComment: null,
     otherComments: null as any,
-    minPlayers: null as any,
-    maxPlayers: null as any,
-    duration: null as any
   },
   
   methods: {
     async onLoad(options: any) {
+        if (!options.gameId) {
+          this.noGame();
+        }
         const gameId = parseInt(options.gameId);
-        const profile = (await getProfile()) as any;
-        const comments = await getComments(gameId);
-        const userComment = comments.find(comment => comment.user.id === profile.id);
-        const otherComments = comments.filter(comment => comment.user.id !== profile.id);
         const game = (await getGame(gameId)) as any;
+        if (!game) {
+          this.noGame();
+        }
         console.log({game});
         const extraInfo = game.extra_info && JSON.parse(game.extra_info);
         const query = wx.createSelectorQuery();
@@ -36,30 +35,38 @@ Component({
             })
           }
         })
-        if (!game) {
-          wx.showToast({
-            title: '游戏不存在',
-            icon: 'error'
-          });
-          wx.navigateBack();
-        }
         this.setData({ 
           game,
-          userComment,
-          otherComments,
-          errataList: extraInfo?.errataList || [],
-          filterErrata: extraInfo?.errataList || [],
-          minPlayers: extraInfo?.minPlayers || null,
-          maxPlayers: extraInfo?.maxPlayers || null,
-          duration: extraInfo?.duration || null,
+          filteredErrata: extraInfo?.errataList || [],
+          extraInfo
         });
+    },
+    onShow() {
+      this.updateComments();
+    },
+    noGame() {
+      wx.showToast({
+        title: '游戏不存在',
+        icon: 'error'
+      });
+      wx.navigateBack();
+    },
+    async updateComments() {
+      const profile = (await getProfile()) as any;
+      const comments = await getComments(this.data.game.id);
+      console.log({comments});
+      const userComment = comments.find(comment => comment.user.id === profile.id);
+      const otherComments = comments.filter(comment => comment.user.id !== profile.id);
+      this.setData({
+        userComment,
+        otherComments
+      })
     },
     navigateToEvaluate() {
       wx.navigateTo({
-        url: '/pages/evaluate/evaluate' // 跳转到评论页面
+        url: `/pages/evaluate/evaluate?game_id=${this.data.game.id}` // 跳转到评论页面
       });
     },
-
     onShareTap() {
       wx.showShareMenu({
         withShareTicket: true,
@@ -141,17 +148,17 @@ Component({
       const keyword = this.data.searchKeyword.toLowerCase();
     
       // 如果 searchKeyword 为空，直接显示所有规则
-      console.debug("rule: ", this.data.errataList);
+      console.debug("rule: ", this.data.extraInfo.errataList);
       if (!keyword) {
         this.setData({
-          filteredErrata: this.data.errataList
+          filteredErrata: this.data.extraInfo.errataList
         });
         return;
       }
     
       // 否则，过滤规则
       this.setData({
-        filteredErrata: this.data.errataList.filter(item => 
+        filteredErrata: this.data.extraInfo.errataList.filter(item => 
           item.question.toLowerCase().includes(keyword) ||
           item.answer.toLowerCase().includes(keyword)
         )
