@@ -7,8 +7,14 @@
       <view class="info">
         <view class="title">{{game.name}}</view>
         <view class="meta">
-          <text class="players">👥 {{extraInfo.minPlayers}}-{{extraInfo.maxPlayers}}人</text>
-          <text class="duration">⏳ {{extraInfo.duration}}分钟</text>
+          <view class="meta-item">
+            <image src="/assets/users.svg" class="meta-icon" />
+            <view>{{extraInfo.minPlayers}}-{{extraInfo.maxPlayers}}人</view>
+          </view>
+          <view class="meta-item">
+            <image src="/assets/clock.svg" class="meta-icon" />
+            <view>{{extraInfo.duration}}分钟</view>
+          </view>
         </view>
         <view class="rating">
           <text class="score">{{game.rating}}</text>
@@ -28,19 +34,19 @@
     <!-- 固定导航栏 -->
     <view class="quick-nav">
       <view class="nav-item" bindtap="jumpToProcess" data-section="process">
-        <image src="/images/icon_process.png" class="nav-icon" />
+        <image src="/assets/align-left.svg" class="nav-icon" />
         <text>游戏流程</text>
       </view>
       <view class="nav-item" bindtap="jumpToRoles" data-section="roles">
-        <image src="/images/icon_role.png" class="nav-icon" />
+        <image src="/assets/human.svg" class="nav-icon" />
         <text>身份速查</text>
       </view>
       <view class="nav-item" bindtap="jumpToErrata" data-section="errata">
-        <image src="/images/icon_errata.png" class="nav-icon" />
+        <image src="/assets/script-text.svg" class="nav-icon" />
         <text>易漏规则</text>
       </view>
       <view class="nav-item" bindtap="jumpToComment" data-section="comment">
-        <image src="/images/icon_errata.png" class="nav-icon" />
+        <image src="/assets/message-processing.svg" class="nav-icon" />
         <text>桌游评论</text>
       </view>
     </view>
@@ -94,7 +100,7 @@
       <view class="search-bar">
         <input class="search-input" placeholder="搜索易漏规则..." placeholder-class="placeholder" bindinput="onSearchInput"
           value="{{searchKeyword}}" />
-        <image src="/images/icon_search.png" class="search-icon" wx:if="{{!searchKeyword}}" />
+        <image src="/assets/search.svg" class="search-icon" wx:if="{{!searchKeyword}}" />
       </view>
 
       <!-- QA滚动区 -->

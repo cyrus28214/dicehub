@@ -38,6 +38,24 @@
   color: #ff9500;
 }
 
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 20rpx;
+}
+
+.meta-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.meta-item {
+  display: flex;
+  gap: 10rpx;
+}
+
 .max {
   font-size: 28rpx;
   color: #999;
@@ -121,14 +139,13 @@
   right: 0;
   z-index: 100;
   background: #fff;
-  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)
 }
 
 .quick-nav {
   display: flex;
   height: 80rpx;
   padding: 0 20rpx 20rpx 20rpx;
-  background: #f8f9fa;
 }
 
 .nav-item {
@@ -389,14 +406,6 @@
 
 .a {
   color: #4CAF50;
-}
-
-.meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 24rpx;
-  color: #999;
-  margin-top: 20rpx;
 }
 
 .status {

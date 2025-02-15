@@ -29,6 +29,12 @@
 }
 
 /*搜索框样式*/
+
+.icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
 .search-box {
     display: flex;
     align-items: center;

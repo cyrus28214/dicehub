@@ -163,3 +163,8 @@
   background: #333;
   color: #fff;
 } 
+
+.icon {
+  width: 48rpx;
+  height: 48rpx;
+}

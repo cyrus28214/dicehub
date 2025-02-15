@@ -1,7 +1,7 @@
 <view class="container">
   <view class="search-header">
     <view class="search-box">
-      <icon type="search" size="20"></icon>
+      <image src="/assets/search.svg" class="icon" />
       <input 
         class="search-input"
         type="text" 

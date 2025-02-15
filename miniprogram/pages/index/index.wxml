@@ -28,7 +28,7 @@
 <view class="container">
     <view class="section">
         <view class="search-box" bind:tap="onTapSearch">
-            <icon type="search" size="20"></icon>
+            <image src="/assets/search.svg" class="icon" />
             <input 
               type="text" 
               placeholder="搜索" 
