@@ -11,7 +11,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "桌游助手",
+    "navigationBarTitleText": "DiceHub",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

@@ -42,12 +42,12 @@ Component({
       const promise = new Promise(resolve => {
         setTimeout(() => {
           resolve({
-            title: '桌游助手-首页'
+            title: 'DiceHub-首页'
           });
         }, 2000); // 延迟 2 秒返回分享内容
       });
       return {
-        title: '桌游助手-首页', // 默认转发标题
+        title: 'DiceHub-首页', // 默认转发标题
         path: '/pages/index/index', // 转发页面路径
         promise // 异步处理内容（如需要动态生成转发标题）
       };

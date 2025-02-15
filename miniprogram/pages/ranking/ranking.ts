@@ -31,12 +31,12 @@ Component({
       const promise = new Promise(resolve => {
         setTimeout(() => {
           resolve({
-            title: '桌游助手-排行榜'
+            title: 'DiceHub-排行榜'
           });
         }, 2000); // 延迟 2 秒返回分享内容
       });
       return {
-        title: '桌游助手-排行榜', // 默认转发标题
+        title: 'DiceHub-排行榜', // 默认转发标题
         path: '/pages/ranking/ranking', // 转发页面路径
         promise // 异步处理内容（如需要动态生成转发标题）
       };

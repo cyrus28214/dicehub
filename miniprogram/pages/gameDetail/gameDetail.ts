@@ -75,7 +75,7 @@ Component({
     onShareAppMessage() {
       const game = this.data.game;
       return {
-        title: `桌游助手 - ${game.name}`, // 动态生成标题
+        title: `DiceHub - ${game.name}`, // 动态生成标题
         path: '/pages/gameDetails/gameDetails?gameId=' + game.id // 转发页面路径
       };
     },
